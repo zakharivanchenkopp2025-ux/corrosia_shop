@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Довідка та FAQ — CORROSIA</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .faq-item { border-bottom: 1px solid var(--border-color); padding: 20px 0; }
+    .faq-question { font-size: 1.2rem; font-weight: 700; margin-bottom: 10px; }
+    .faq-answer { color: var(--text-gray); font-size: 0.95rem; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">CORROSIA</a>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="catalog.html" class="nav-link">Shop</a></li>
+        <li><a href="custom.html" class="nav-link">Custom</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-box-btn">Кошик (2)</a>
+      <a href="custom.html" class="btn btn-primary">Створити свою річ</a>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <span class="page-meta">15 / CORROSIA — CUSTOM STREETWEAR</span>
+    <h1 class="page-title">ДОПОМОГА БЕЗ ЗАЙВОГО.</h1>
+    <p class="page-desc">Замовлення / Доставка й оплата / Повернення / Розміри / Догляд</p>
+
+    <div class="split-layout" style="grid-template-columns: 280px 1fr;">
+      <!-- Меню довідки -->
+      <aside>
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Пошук у довідці / Твоє питання...">
+        </div>
+        <div class="card-box" style="padding: 16px;">
+          <h4 style="margin-bottom: 16px;">У ЦЬОМУ РОЗДІЛІ</h4>
+          <a href="#orders" class="btn btn-secondary" style="width: 100%; margin-bottom: 8px; justify-content: flex-start;">Замовлення / FAQ</a>
+          <a href="#delivery" class="btn btn-secondary" style="width: 100%; margin-bottom: 8px; justify-content: flex-start;">Доставка й оплата</a>
+          <a href="#returns" class="btn btn-secondary" style="width: 100%; margin-bottom: 8px; justify-content: flex-start;">Повернення</a>
+          <a href="#sizes" class="btn btn-secondary" style="width: 100%; margin-bottom: 8px; justify-content: flex-start;">Розміри</a>
+          <a href="#care" class="btn btn-secondary" style="width: 100%; justify-content: flex-start;">Догляд</a>
+        </div>
+      </aside>
+
+      <!-- Акордеони FAQ -->
+      <div>
+        <section id="orders" style="margin-bottom: 40px;">
+          <span class="page-meta">01 / ДОВІДКА</span>
+          <h2 style="font-size: 2rem; margin-bottom: 20px;">ЗАМОВЛЕННЯ / FAQ</h2>
+          <div class="faq-item">
+            <div class="faq-question">Як замовити готову річ? &minus;</div>
+            <div class="faq-answer">Обери річ у Shop, вкажи розмір і кількість, додай у кошик. Далі заповни контакти та дані доставки й перевір підсумок.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Як створити custom? &minus;</div>
+            <div class="faq-answer">Заповни бриф у Custom atelier: базова річ, розмір, задум і референси. Після уточнення деталей погоджуємо ескіз. Вартість розрахуємо після брифу.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Як перевірити стан замовлення? &minus;</div>
+            <div class="faq-answer">Відкрий замовлення в кабінеті. Якщо потрібне уточнення, надішли звернення через контакти та вкажи номер замовлення.</div>
+          </div>
+        </section>
+
+        <section id="delivery" style="margin-bottom: 40px;">
+          <span class="page-meta">02 / ДОВІДКА</span>
+          <h2 style="font-size: 2rem; margin-bottom: 20px;">ДОСТАВКА Й ОПЛАТА</h2>
+          <div class="faq-item">
+            <div class="faq-question">Куди доставляєте? &minus;</div>
+            <div class="faq-answer">Цей магазин передбачає доставку Україною. Доступних перевізників, способи отримання та географічні обмеження потрібно підтвердити з брендом.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Скільки коштує доставка? &minus;</div>
+            <div class="faq-answer">За тарифом перевізника. У кошику показано підсумок лише за товари; доставка не входить у цю суму.</div>
+          </div>
+        </section>
+
+        <section id="returns" style="margin-bottom: 40px;">
+          <span class="page-meta">03 / ДОВІДКА</span>
+          <h2 style="font-size: 2rem; margin-bottom: 20px;">ПОВЕРНЕННЯ ТА ОБМІН</h2>
+          <div class="faq-item">
+            <div class="faq-question">Як звернутися щодо повернення? &minus;</div>
+            <div class="faq-answer">Напиши через форму контактів, додай номер замовлення та опиши ситуацію. За потреби прикріпи фото виробу.</div>
+          </div>
+        </section>
+
+        <!-- Не знайшов відповідь -->
+        <div class="card-box" style="margin-top: 60px;">
+          <span class="page-meta">CUSTOM ATELIER / UKRAINE</span>
+          <h2 style="font-size: 2.2rem; margin: 10px 0;">НЕ ЗНАЙШОВ ВІДПОВІДЬ?</h2>
+          <p style="color: var(--text-gray); margin-bottom: 24px;">Опиши питання. Для звернення щодо замовлення додай його номер.</p>
+          <a href="contacts.html" class="btn btn-primary">Зв'язатися з нами &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo-wrap">
+      <div class="footer-gothic-logo">CORROSIA</div>
+      <div class="footer-brand-info"><span>CUSTOM MADE / UKRAINE</span><span>Одягай власну ідентичність.</span></div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col"><h4>Магазин</h4><ul><li><a href="catalog.html">Shop</a></li><li><a href="product.html">Худі CORROSIA</a></li><li><a href="custom.html">Custom</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="about.html">About</a></li></ul></div>
+      <div class="footer-col"><h4>Твій простір</h4><ul><li><a href="cart.html">Кошик</a></li><li><a href="checkout.html">Оформлення</a></li><li><a href="order-success.html">Підтвердження замовлення</a></li><li><a href="auth.html">Вхід / Реєстрація</a></li><li><a href="account.html">Особистий кабінет</a></li></ul></div>
+      <div class="footer-col"><h4>Підтримка</h4><ul><li><a href="contacts.html">Контакти</a></li><li><a href="faq.html">Допомога / FAQ</a></li><li><a href="faq.html">Доставка й оплата</a></li><li><a href="faq.html">Повернення</a></li><li><a href="faq.html">Розміри й догляд</a></li></ul></div>
+    </div>
+    <p class="footer-copyright">&copy; CORROSIA / Усі права захищені. Україна / UA</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

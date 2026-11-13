@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кошик — CORROSIA</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .cart-item {
+      display: grid;
+      grid-template-columns: 120px 1fr auto;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-color);
+      align-items: center;
+      transition: opacity 0.25s ease;
+    }
+    .cart-item img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+    }
+    .qty-wrap {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      background: var(--bg-input);
+    }
+    .qty-btn {
+      background: transparent;
+      border: none;
+      color: #fff;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .qty-wrap span {
+      padding: 0 12px;
+      font-weight: 700;
+    }
+    .before-checkout-block {
+      margin-top: 40px;
+    }
+    .before-checkout-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Шапка сайту з готичним логотипом -->
+  <header class="site-header">
+    <a href="index.html" class="site-logo">
+      <img src="assets/images/logo.png" alt="CORROSIA" class="logo-img">
+    </a>
+    <nav class="main-nav" aria-label="Головна навігація">
+      <ul class="nav-list">
+        <li><a href="catalog.html" class="nav-link">Shop</a></li>
+        <li><a href="custom.html" class="nav-link">Custom</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-box-btn">Кошик (0)</a>
+      <a href="custom.html" class="btn btn-primary">Створити свою річ</a>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <span class="page-meta">09 / CORROSIA — CUSTOM STREETWEAR</span>
+    <h1 class="page-title">ТВІЙ КОШИК</h1>
+    <p class="page-desc" id="cart-subtitle">0 речей / Кошик порожній</p>
+
+    <div class="split-layout">
+      <!-- Ліва колонка: Список товарів та промокод -->
+      <div>
+        <div id="cart-items-list">
+          <!-- Якщо кошик порожній або містить товари, скрипт генерує вміст сюди -->
+        </div>
+
+        <div style="margin-top: 30px;">
+          <a href="catalog.html" class="btn btn-secondary">&larr; Продовжити покупки</a>
+        </div>
+
+        <!-- Блок введення промокоду -->
+        <div class="card-box" style="margin-top: 40px;">
+          <h3>МАЄШ ПРОМОКОД?</h3>
+          <div style="display: flex; gap: 12px; margin: 16px 0;">
+            <input type="text" class="form-control" placeholder="Введи код">
+            <button type="button" class="btn btn-secondary">Застосувати</button>
+          </div>
+          <small style="color: var(--text-muted);">Знижку не застосовано. Підсумок без промокоду.</small>
+        </div>
+
+        <!-- Блок Перед оформленням -->
+        <div class="card-box before-checkout-block">
+          <h3>ПЕРЕД ОФОРМЛЕННЯМ</h3>
+          <p style="color: var(--text-gray); font-size: 0.95rem; line-height: 1.6;">Перевір розміри й кількість. Потрібна порада? У довідці є розділи про розміри, доставку та догляд.</p>
+          <div class="before-checkout-buttons">
+            <a href="faq.html#sizes" class="btn btn-secondary">Розміри й догляд &rarr;</a>
+            <a href="faq.html" class="btn btn-secondary">Допомога &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Права колонка: Підсумок замовлення -->
+      <aside>
+        <div class="card-box">
+          <h3>ПІДСУМОК</h3>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 12px; color: var(--text-gray);">
+            <span>Товари</span>
+            <span id="cart-subtotal">0 ₴</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 24px; color: var(--text-gray);">
+            <span>Доставка</span>
+            <span>За тарифом перевізника</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; margin-bottom: 24px; font-size: 1.25rem; font-weight: 800; border-top: 1px solid var(--border-color); padding-top: 16px;">
+            <span>Разом за товари</span>
+            <span id="cart-total">0 ₴</span>
+          </div>
+          <a href="checkout.html" class="btn btn-primary" style="width: 100%; padding: 16px;">Оформити замовлення &rarr;</a>
+          <small style="color: var(--text-muted); display: block; margin-top: 14px; text-align: center;">Контакти, доставка та спосіб оплати — на наступному кроці.</small>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- Підвал сайту -->
+  <footer class="site-footer">
+    <div class="footer-logo-wrap">
+      <img src="assets/images/logo.png" alt="CORROSIA" style="height: 50px; width: auto; margin-bottom: 12px;">
+      <div class="footer-brand-info">
+        <span>CUSTOM MADE / UKRAINE</span>
+        <span>Одягай власну ідентичність.</span>
+      </div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Магазин</h4>
+        <ul>
+          <li><a href="catalog.html">Shop</a></li>
+          <li><a href="product.html">Худі CORROSIA</a></li>
+          <li><a href="custom.html">Custom</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Твій простір</h4>
+        <ul>
+          <li><a href="cart.html">Кошик</a></li>
+          <li><a href="checkout.html">Оформлення</a></li>
+          <li><a href="order-success.html">Підтвердження замовлення</a></li>
+          <li><a href="auth.html">Вхід / Реєстрація</a></li>
+          <li><a href="account.html">Особистий кабінет</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Підтримка</h4>
+        <ul>
+          <li><a href="contacts.html">Контакти</a></li>
+          <li><a href="faq.html">Допомога / FAQ</a></li>
+          <li><a href="faq.html">Доставка й оплата</a></li>
+          <li><a href="faq.html">Повернення</a></li>
+          <li><a href="faq.html">Розміри й догляд</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="footer-copyright">&copy; CORROSIA / Усі права захищені. Україна / UA</p>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

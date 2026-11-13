@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Вхід / Реєстрація — CORROSIA</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">CORROSIA</a>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="catalog.html" class="nav-link">Shop</a></li>
+        <li><a href="custom.html" class="nav-link">Custom</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-box-btn">Кошик (2)</a>
+      <a href="custom.html" class="btn btn-primary">Створити свою річ</a>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <span class="page-meta">12 / CORROSIA — CUSTOM STREETWEAR</span>
+    <h1 class="page-title">ТВОЯ ТЕРИТОРІЯ.</h1>
+    <p class="page-desc">Увійди, щоб бачити замовлення та custom-запити в одному місці.</p>
+
+    <div class="split-layout" style="grid-template-columns: 1fr 1fr;">
+      <!-- Вхід -->
+      <div class="card-box">
+        <span style="color: var(--text-muted); font-size: 0.8rem;">01 / ВХІД</span>
+        <h2 style="font-size: 1.8rem; margin: 12px 0 24px;">ПОВЕРТАЙСЯ ДО СВОЇХ ІДЕЙ.</h2>
+        <form action="account.html" method="get">
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" class="form-control" placeholder="Твій email" required>
+          </div>
+          <div class="form-group">
+            <label>Пароль</label>
+            <input type="password" class="form-control" value="password123" style="border-color: #8b0000;">
+            <small style="color: #c90000; display: block; margin-top: 6px;">! Перевір пароль і спробуй ще раз.</small>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 16px;">Увійти &rarr;</button>
+          <a href="#" style="color: var(--text-muted); font-size: 0.85rem; text-decoration: underline; display: block; margin-bottom: 24px;">Відновити пароль</a>
+          <a href="catalog.html" class="btn btn-secondary" style="width: 100%;">Продовжити як гість &rarr;</a>
+        </form>
+      </div>
+
+      <!-- Реєстрація -->
+      <div class="card-box">
+        <span style="color: var(--text-muted); font-size: 0.8rem;">02 / РЕЄСТРАЦІЯ</span>
+        <h2 style="font-size: 1.8rem; margin: 12px 0 24px;">СТВОРИ СВІЙ КАБІНЕТ</h2>
+        <form action="account.html" method="get">
+          <div class="form-group">
+            <label>Ім'я</label>
+            <input type="text" class="form-control" placeholder="Як до тебе звертатися">
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" class="form-control" placeholder="Твій email" required>
+          </div>
+          <div class="form-group">
+            <label>Пароль *</label>
+            <input type="password" class="form-control" placeholder="Створи пароль" required>
+          </div>
+          <label class="custom-checkbox" style="margin-bottom: 24px;">
+            <input type="checkbox" required checked> Погоджуюся на обробку даних і з умовами користування
+          </label>
+          <button type="submit" class="btn btn-primary" style="width: 100%;">Зареєструватися &rarr;</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo-wrap">
+      <div class="footer-gothic-logo">CORROSIA</div>
+      <div class="footer-brand-info"><span>CUSTOM MADE / UKRAINE</span><span>Одягай власну ідентичність.</span></div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col"><h4>Магазин</h4><ul><li><a href="catalog.html">Shop</a></li><li><a href="product.html">Худі CORROSIA</a></li><li><a href="custom.html">Custom</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="about.html">About</a></li></ul></div>
+      <div class="footer-col"><h4>Твій простір</h4><ul><li><a href="cart.html">Кошик</a></li><li><a href="checkout.html">Оформлення</a></li><li><a href="order-success.html">Підтвердження замовлення</a></li><li><a href="auth.html">Вхід / Реєстрація</a></li><li><a href="account.html">Особистий кабінет</a></li></ul></div>
+      <div class="footer-col"><h4>Підтримка</h4><ul><li><a href="contacts.html">Контакти</a></li><li><a href="faq.html">Допомога / FAQ</a></li><li><a href="faq.html">Доставка й оплата</a></li><li><a href="faq.html">Повернення</a></li><li><a href="faq.html">Розміри й догляд</a></li></ul></div>
+    </div>
+    <p class="footer-copyright">&copy; CORROSIA / Усі права захищені. Україна / UA</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

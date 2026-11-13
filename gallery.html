@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Галерея — CORROSIA</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .gallery-full-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .gallery-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 12px; }
+    .gallery-card img { width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: 12px; }
+    .open-work-block { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--bg-card); border: 1px solid var(--border-color); padding: 40px; margin-bottom: 60px; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">CORROSIA</a>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="catalog.html" class="nav-link">Shop</a></li>
+        <li><a href="custom.html" class="nav-link">Custom</a></li>
+        <li><a href="gallery.html" class="nav-link active">Gallery</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-box-btn">Кошик (2)</a>
+      <a href="custom.html" class="btn btn-primary">Створити свою річ</a>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <span class="page-meta">07 / CORROSIA — CUSTOM STREETWEAR</span>
+    <h1 class="page-title">АРХІВ ІНДИВІДУАЛЬНОСТІ.</h1>
+    <p class="page-desc">Речі, створені за власними правилами. Знайди напрям для своєї ідеї.</p>
+
+    <div class="filter-tabs">
+      <button class="tab-btn active">Усі роботи</button>
+      <button class="tab-btn">Худі</button>
+      <button class="tab-btn">Футболки</button>
+      <button class="tab-btn">Зіпки</button>
+      <button class="tab-btn">Cargo</button>
+      <button class="tab-btn">Аксесуари</button>
+    </div>
+
+    <!-- Відкрита картка роботи -->
+    <div class="open-work-block">
+      <div>
+        <img src="assets/images/work-4247.png" alt="Відкрита робота #4247" loading="lazy">
+      </div>
+      <div>
+        <span style="color: var(--text-muted); font-size: 0.8rem;">ВІДКРИТА РОБОТА / #4247</span>
+        <h2 style="font-size: 2.4rem; margin: 12px 0 20px;">ХУДІ. ВЛАСНИЙ ХАРАКТЕР.</h2>
+        <p style="color: var(--text-gray); margin-bottom: 24px;">Робота з архіву CORROSIA. Від загального силуету до деталей — ідея стає частиною речі.</p>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 8px;">Категорія / Худі</p>
+        <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 24px;">Напрям / Custom atelier</p>
+        <a href="custom.html" class="btn btn-primary" style="margin-right: 16px;">Хочу власний кастом &rarr;</a>
+        <button class="btn btn-secondary">Згорнути роботу &minus;</button>
+      </div>
+    </div>
+
+    <h3 style="margin-bottom: 24px;">УСІ РОБОТИ</h3>
+    <div class="gallery-full-grid">
+      <div class="gallery-card">
+        <img src="assets/images/work-4247.png" alt="#4247" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4247 / Худі</strong><a href="#">Custom &nearr;</a></div>
+      </div>
+      <div class="gallery-card">
+        <img src="assets/images/work-4246.png" alt="#4246" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4246 / Футболка</strong><a href="#">Custom &nearr;</a></div>
+      </div>
+      <div class="gallery-card">
+        <img src="assets/images/work-4245.png" alt="#4245" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4245 / Зіпка</strong><a href="#">Custom &nearr;</a></div>
+      </div>
+      <div class="gallery-card">
+        <img src="assets/images/work-4244.png" alt="#4244" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4244 / Cargo</strong><a href="#">Custom &nearr;</a></div>
+      </div>
+      <div class="gallery-card">
+        <img src="assets/images/work-4243.png" alt="#4243" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4243 / Худі</strong><a href="#">Custom &nearr;</a></div>
+      </div>
+      <div class="gallery-card">
+        <img src="assets/images/work-4242.png" alt="#4242" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4242 / Аксесуар</strong><a href="#">Custom &nearr;</a></div>
+      </div>
+      <div class="gallery-card">
+        <img src="assets/images/work-4241.png" alt="#4241" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4241 / Футболка</strong><a href="#">Custom &nearr;</a></div>
+      </div>
+      <div class="gallery-card">
+        <img src="assets/images/work-4240.png" alt="#4240" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4240 / Зіпка</strong><a href="#">Custom &nearr;</a></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo-wrap">
+      <div class="footer-gothic-logo">CORROSIA</div>
+      <div class="footer-brand-info"><span>CUSTOM MADE / UKRAINE</span><span>Одягай власну ідентичність.</span></div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col"><h4>Магазин</h4><ul><li><a href="catalog.html">Shop</a></li><li><a href="product.html">Худі CORROSIA</a></li><li><a href="custom.html">Custom</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="about.html">About</a></li></ul></div>
+      <div class="footer-col"><h4>Твій простір</h4><ul><li><a href="cart.html">Кошик</a></li><li><a href="checkout.html">Оформлення</a></li><li><a href="order-success.html">Підтвердження замовлення</a></li><li><a href="auth.html">Вхід / Реєстрація</a></li><li><a href="account.html">Особистий кабінет</a></li></ul></div>
+      <div class="footer-col"><h4>Підтримка</h4><ul><li><a href="contacts.html">Контакти</a></li><li><a href="faq.html">Допомога / FAQ</a></li><li><a href="faq.html">Доставка й оплата</a></li><li><a href="faq.html">Повернення</a></li><li><a href="faq.html">Розміри й догляд</a></li></ul></div>
+    </div>
+    <p class="footer-copyright">&copy; CORROSIA / Усі права захищені. Україна / UA</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Худі CORROSIA — Товар</title>
+
+  <!-- 1. Підключення Tailwind CSS через CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- 2. Власні стилі з ЛР№5 -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    .product-main {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    .product-media img {
+      width: 100%;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-card);
+    }
+    .product-gallery-thumbs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .product-gallery-thumbs img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease, border-color 0.2s ease;
+    }
+    .product-gallery-thumbs img:hover {
+      opacity: 1;
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+    .size-selector {
+      display: flex;
+      gap: 10px;
+      margin: 16px 0;
+    }
+    .size-btn {
+      padding: 10px 18px;
+      background: transparent;
+      border: 1px solid var(--border-color);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .size-btn.active {
+      border-color: #8b0000;
+      background: rgba(139, 0, 0, 0.2);
+    }
+    .qty-wrap {
+      display: flex;
+      align-items: center;
+      border: 1px solid var(--border-color);
+      width: fit-content;
+      margin-bottom: 24px;
+      background: var(--bg-input);
+    }
+    .qty-btn {
+      background: transparent;
+      border: none;
+      color: #fff;
+      padding: 10px 16px;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .qty-wrap span {
+      padding: 0 16px;
+      font-weight: 700;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-color);
+    }
+    .related-section {
+      margin-top: 80px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-color);
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 30px;
+    }
+    .related-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 16px;
+      display: block;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+    }
+    .related-card:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      transform: translateY(-3px);
+    }
+    .related-card img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+    .related-card h4 {
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+    .related-card p {
+      color: var(--text-gray);
+      font-size: 0.95rem;
+    }
+    @media (max-width: 900px) {
+      .product-main, .info-grid, .related-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body class="bg-[#060606] text-white">
+
+  <!-- Адаптивний Header з Tailwind CSS -->
+  <header class="sticky top-0 z-50 w-full bg-[#060606]/95 backdrop-blur-md border-b border-white/10 transition-colors duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20 gap-4">
+        
+        <!-- Логотип зліва -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="index.html" class="inline-flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600">
+            <img 
+              src="assets/images/logo.png" 
+              alt="CORROSIA" 
+              class="h-8 md:h-10 w-auto object-contain transition-opacity duration-200 group-hover:opacity-80"
+            />
+          </a>
+        </div>
+
+        <!-- Навігація десктоп -->
+        <nav class="hidden md:flex items-center gap-8" aria-label="Головна навігація">
+          <a href="catalog.html" class="text-sm font-medium tracking-wider uppercase text-white transition-colors duration-150 border-b border-[#8b0000]">Shop</a>
+          <a href="custom.html" class="text-sm font-medium tracking-wider uppercase text-zinc-300 hover:text-white transition-colors duration-150">Custom</a>
+          <a href="gallery.html" class="text-sm font-medium tracking-wider uppercase text-zinc-300 hover:text-white transition-colors duration-150">Gallery</a>
+          <a href="about.html" class="text-sm font-medium tracking-wider uppercase text-zinc-300 hover:text-white transition-colors duration-150">About</a>
+        </nav>
+
+        <!-- Дії справа -->
+        <div class="flex items-center gap-3 sm:gap-4">
+          <a href="cart.html" class="cart-box-btn px-3.5 py-2 text-xs uppercase tracking-wider font-semibold text-zinc-200 border border-white/15 hover:border-white/40 hover:text-white transition-all duration-150">
+            Кошик (0)
+          </a>
+
+          <a href="custom.html" class="hidden md:inline-flex items-center justify-center min-h-[42px] px-5 py-2.5 bg-[#8b0000] hover:bg-[#b30000] active:scale-95 text-white text-xs uppercase tracking-widest font-bold border border-red-900/60 shadow-sm transition-all duration-200">
+            Створити свою річ
+          </a>
+
+          <!-- Кнопка мобільного меню -->
+          <button 
+            type="button" 
+            id="mobile-menu-toggle" 
+            class="inline-flex md:hidden items-center justify-center p-2 text-zinc-400 hover:text-white hover:bg-white/5 border border-white/10 transition-colors" 
+            aria-expanded="false" 
+            aria-label="Відкрити головне меню"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Мобільна навігація -->
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-[#090909] px-4 pt-3 pb-6 space-y-3">
+      <nav class="flex flex-col space-y-2">
+        <a href="catalog.html" class="block px-3 py-2 text-base font-medium uppercase tracking-wider text-white border-l-2 border-[#8b0000] bg-white/5">Shop</a>
+        <a href="custom.html" class="block px-3 py-2 text-base font-medium uppercase tracking-wider text-zinc-300 hover:text-white hover:bg-white/5 transition-all">Custom</a>
+        <a href="gallery.html" class="block px-3 py-2 text-base font-medium uppercase tracking-wider text-zinc-300 hover:text-white hover:bg-white/5 transition-all">Gallery</a>
+        <a href="about.html" class="block px-3 py-2 text-base font-medium uppercase tracking-wider text-zinc-300 hover:text-white hover:bg-white/5 transition-all">About</a>
+      </nav>
+      <div class="pt-3 border-t border-white/10">
+        <a href="custom.html" class="flex w-full items-center justify-center min-h-[44px] py-3 px-4 bg-[#8b0000] hover:bg-[#b30000] text-white text-xs uppercase tracking-widest font-bold text-center">
+          Створити свою річ
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <span class="page-meta">05 / CORROSIA — CUSTOM STREETWEAR</span>
+    <h1 class="page-title">ХУДІ CORROSIA</h1>
+    <p class="page-desc">Shop / Худі / Худі CORROSIA</p>
+
+    <div class="product-main">
+      <!-- Галерея фото товару -->
+      <div class="product-media">
+        <img src="assets/images/category-hoodie.png" alt="Худі CORROSIA" id="main-product-img">
+        <div class="product-gallery-thumbs">
+          <img src="assets/images/category-hoodie.png" alt="Загальний вигляд">
+          <img src="assets/images/work-4247.png" alt="На людині">
+          <img src="assets/images/work-4243.png" alt="Деталі рукава">
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 10px;">Загальний вигляд / На людині / Деталі з архіву CORROSIA</p>
+      </div>
+
+      <!-- Інформація та замовлення -->
+      <div class="product-details">
+        <span style="color: var(--text-muted); font-size: 0.8rem; letter-spacing: 1.5px;">CORROSIA / ХУДІ</span>
+        <h2 style="font-size: 2.2rem; margin: 12px 0;">1 890 ₴</h2>
+        <p style="color: var(--text-gray); margin-bottom: 24px; line-height: 1.6;">Готова річ CORROSIA. Чітка форма та власний характер — без зайвого.</p>
+
+        <div class="form-group">
+          <label>Колір: чорний</label>
+          <div style="display: flex; gap: 10px; align-items: center; color: #fff; font-size: 0.95rem;">
+            <span style="display:inline-block; width:14px; height:14px; background:#000; border:1px solid #fff;"></span> Чорний
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Обери розмір</label>
+          <div class="size-selector">
+            <button type="button" class="size-btn">S</button>
+            <button type="button" class="size-btn active">M</button>
+            <button type="button" class="size-btn">L</button>
+            <button type="button" class="size-btn">XL</button>
+          </div>
+        </div>
+
+        <div class="card-box" style="padding: 20px; margin-bottom: 24px;">
+          <h4 style="margin-bottom: 12px; font-size: 1rem;">ЯК ОБРАТИ РОЗМІР</h4>
+          <p style="font-size: 0.85rem; color: var(--text-gray); margin-bottom: 6px;">Розмір: S / M / L / XL</p>
+          <p style="font-size: 0.85rem; color: var(--text-gray); margin-bottom: 6px;">Ширина виробу, см: — / — / — / —</p>
+          <p style="font-size: 0.85rem; color: var(--text-gray); margin-bottom: 10px;">Довжина, см: — / — / — / —</p>
+          <small style="color: var(--text-muted);">Точні заміри — підтвердити з брендом. Порівняй із річчю, посадка якої тобі подобається.</small>
+        </div>
+
+        <label style="font-size: 0.85rem; color: var(--text-gray); display:block; margin-bottom: 8px;">Кількість</label>
+        <div class="qty-wrap">
+          <button type="button" class="qty-btn">-</button>
+          <span>1</span>
+          <button type="button" class="qty-btn">+</button>
+        </div>
+
+        <!-- Кнопка додавання до кошика (зв'язана з LocalStorage у main.js) -->
+        <button type="button" class="btn btn-primary btn-add-to-cart" style="width: 100%; padding: 16px; font-size: 1rem;">
+          Додати в кошик · 1 890 ₴ &rarr;
+        </button>
+        <p style="color: var(--text-muted); font-size: 0.8rem; margin-top: 12px;">Доставка Україною. За тарифом перевізника.</p>
+      </div>
+    </div>
+
+    <!-- Блоки Опис і Догляд -->
+    <div class="info-grid">
+      <div>
+        <h3 class="text-xl font-bold mb-3">ОПИС</h3>
+        <p style="color: var(--text-gray); margin: 12px 0 20px; line-height: 1.6;">Худі CORROSIA з готової колекції. Для тих, хто обирає одяг як продовження власної ідентичності.</p>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Хочеш інший задум? Перейди в Custom atelier та опиши свою ідею.</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold mb-3">ДОГЛЯД</h3>
+        <p style="color: var(--text-gray); margin: 12px 0 24px; line-height: 1.6;">Дотримуйся позначень на ярлику виробу. Особливості догляду за кастомним декором уточни перед замовленням.</p>
+        <h3 class="text-xl font-bold mb-3">ДОСТАВКА Й ПОВЕРНЕННЯ</h3>
+        <p style="color: var(--text-gray); margin-bottom: 16px; line-height: 1.6;">Доставка — за тарифом перевізника. Доступні способи, строки та умови повернення потребують підтвердження бренду.</p>
+        <a href="faq.html" class="btn btn-secondary">Докладніше в довідці &rarr;</a>
+      </div>
+    </div>
+
+    <!-- Доповни свій образ -->
+    <section class="related-section">
+      <h2 style="font-size: 2rem; font-weight: 900;">ДОПОВНИ СВІЙ ОБРАЗ</h2>
+      <div class="related-grid">
+        <a href="product.html" class="related-card">
+          <img src="assets/images/category-zip.png" alt="Зіпка CORROSIA">
+          <h4>Зіпка CORROSIA</h4>
+          <p>2 290 ₴</p>
+        </a>
+        <a href="product.html" class="related-card">
+          <img src="assets/images/category-tee.png" alt="Футболка CORROSIA">
+          <h4>Футболка CORROSIA</h4>
+          <p>1 290 ₴</p>
+        </a>
+        <a href="product.html" class="related-card">
+          <img src="assets/images/category-cargo.png" alt="Штани Cargo">
+          <h4>Штани Cargo</h4>
+          <p>2 690 ₴</p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Оновлений семантичний Footer (HTML5 + Tailwind CSS) -->
+  <footer class="w-full bg-[#050505] text-zinc-300 border-t border-white/10 transition-colors duration-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
+        
+        <!-- Колонка 1: Логотип бренду та маніфест -->
+        <div class="space-y-4">
+          <a href="index.html" class="inline-block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600">
+            <img 
+              src="assets/images/logo.png" 
+              alt="CORROSIA" 
+              class="h-9 w-auto object-contain transition-opacity duration-200 group-hover:opacity-80"
+            />
+          </a>
+          <div class="space-y-1">
+            <span class="block text-[11px] font-mono uppercase tracking-[0.2em] text-[#c22222]">
+              CUSTOM MADE / UKRAINE
+            </span>
+            <p class="text-xs uppercase tracking-wider text-zinc-400 font-semibold">
+              Одягай власну ідентичність.
+            </p>
+          </div>
+          <p class="text-xs text-zinc-400 leading-relaxed max-w-xs">
+            Нішевий кастомний стрітвір та індивідуальне ательє. Від авторського ескізу до унікальної форми без компромісів.
+          </p>
+        </div>
+
+        <!-- Колонка 2: Магазин / Навігація -->
+        <div>
+          <h4 class="text-xs font-mono font-bold uppercase tracking-[0.25em] text-white border-l-2 border-[#8b0000] pl-3 mb-5">
+            Магазин
+          </h4>
+          <ul class="space-y-2.5 text-sm" role="list">
+            <li><a href="catalog.html" class="hover:text-white transition-colors duration-150 inline-block">Каталог дропів</a></li>
+            <li><a href="product.html" class="hover:text-white transition-colors duration-150 inline-block">Худі CORROSIA</a></li>
+            <li><a href="custom.html" class="hover:text-white transition-colors duration-150 inline-block">Custom Atelier</a></li>
+            <li><a href="gallery.html" class="hover:text-white transition-colors duration-150 inline-block">Галерея робіт</a></li>
+            <li><a href="about.html" class="hover:text-white transition-colors duration-150 inline-block">Про майстерню</a></li>
+          </ul>
+        </div>
+
+        <!-- Колонка 3: Сервіс та підтримка -->
+        <div>
+          <h4 class="text-xs font-mono font-bold uppercase tracking-[0.25em] text-white border-l-2 border-[#8b0000] pl-3 mb-5">
+            Підтримка
+          </h4>
+          <ul class="space-y-2.5 text-sm" role="list">
+            <li><a href="cart.html" class="hover:text-white transition-colors duration-150 inline-block">Твій кошик</a></li>
+            <li><a href="faq.html" class="hover:text-white transition-colors duration-150 inline-block">Допомога / FAQ</a></li>
+            <li><a href="faq.html#delivery" class="hover:text-white transition-colors duration-150 inline-block">Доставка й оплата</a></li>
+            <li><a href="faq.html#sizes" class="hover:text-white transition-colors duration-150 inline-block">Розміри й догляд</a></li>
+            <li><a href="account.html" class="hover:text-white transition-colors duration-150 inline-block">Особистий кабінет</a></li>
+          </ul>
+        </div>
+
+        <!-- Колонка 4: Контакти та соцмережі -->
+        <div class="space-y-4">
+          <h4 class="text-xs font-mono font-bold uppercase tracking-[0.25em] text-white border-l-2 border-[#8b0000] pl-3 mb-5">
+            Зв'язок
+          </h4>
+          <p class="text-xs text-zinc-400">
+            Львів, Україна / Відправка по всій країні
+          </p>
+          <p class="text-sm font-mono text-zinc-200">
+            <a href="mailto:info@corrosia.ua" class="hover:text-[#c22222] transition-colors duration-150">
+              info@corrosia.ua
+            </a>
+          </p>
+          
+          <div class="pt-2">
+            <span class="block text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-3">Соціальні мережі</span>
+            <div class="flex items-center gap-3">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center bg-[#0d0d0d] border border-white/10 hover:border-[#8b0000] hover:text-white text-zinc-400 transition-all" aria-label="Instagram">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="https://telegram.org" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center bg-[#0d0d0d] border border-white/10 hover:border-[#8b0000] hover:text-white text-zinc-400 transition-all" aria-label="Telegram">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              </a>
+              <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="w-10 h-10 flex items-center justify-center bg-[#0d0d0d] border border-white/10 hover:border-[#8b0000] hover:text-white text-zinc-400 transition-all" aria-label="TikTok">
+                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Копірайт -->
+      <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
+        <p>&copy; 2026 CORROSIA. Всі права захищені. Україна / UA</p>
+        <div class="flex items-center gap-6">
+          <a href="faq.html" class="hover:text-zinc-300 transition-colors">Угода користувача</a>
+          <a href="faq.html" class="hover:text-zinc-300 transition-colors">Політика конфіденційності</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

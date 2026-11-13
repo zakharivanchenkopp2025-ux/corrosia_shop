@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оформлення замовлення — CORROSIA</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">CORROSIA</a>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="catalog.html" class="nav-link">Shop</a></li>
+        <li><a href="custom.html" class="nav-link">Custom</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-box-btn">Кошик (2)</a>
+      <a href="custom.html" class="btn btn-primary">Створити свою річ</a>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <span class="page-meta">10 / CORROSIA — CUSTOM STREETWEAR</span>
+    <h1 class="page-title">ОФОРМЛЕННЯ</h1>
+    <p class="page-desc">Кошик &rarr; Контакти й доставка &rarr; Підтвердження</p>
+
+    <div class="split-layout">
+      <form action="order-success.html" method="get">
+        <!-- 01 / Контактні дані -->
+        <div class="card-box">
+          <h3>01 / КОНТАКТНІ ДАНІ</h3>
+          <p style="color: var(--text-gray); font-size: 0.85rem; margin-bottom: 16px;">Можна оформити як гість або увійти в кабінет.</p>
+          <a href="auth.html" class="btn btn-secondary" style="margin-bottom: 24px;">Увійти в кабінет &rarr;</a>
+          <div class="form-group">
+            <label>Ім'я *</label>
+            <input type="text" class="form-control" placeholder="Твоє ім'я" required>
+          </div>
+          <div class="form-group">
+            <label>Прізвище *</label>
+            <input type="text" class="form-control" placeholder="Твоє прізвище" required>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" class="form-control" placeholder="Твій email" required>
+          </div>
+          <div class="form-group">
+            <label>Телефон *</label>
+            <input type="tel" class="form-control" placeholder="+380 __ ___ __ __" required>
+          </div>
+        </div>
+
+        <!-- 02 / Доставка -->
+        <div class="card-box">
+          <h3>02 / ДОСТАВКА УКРАЇНОЮ</h3>
+          <div class="form-group">
+            <label>Країна</label>
+            <select class="form-control"><option>Україна</option></select>
+          </div>
+          <div class="form-group">
+            <label>Спосіб отримання *</label>
+            <select class="form-control"><option>Відділення перевізника</option><option>Поштомат</option><option>Кур'єр</option></select>
+          </div>
+          <div class="form-group">
+            <label>Місто *</label>
+            <input type="text" class="form-control" placeholder="Обери місто" required>
+          </div>
+          <div class="form-group">
+            <label>Перевізник *</label>
+            <select class="form-control"><option>Нова Пошта</option></select>
+          </div>
+          <div class="form-group">
+            <label>Відділення / поштомат *</label>
+            <input type="text" class="form-control" placeholder="Номер або назва відділення" required>
+          </div>
+          <div class="form-group">
+            <label>Адреса для кур'єрської доставки</label>
+            <input type="text" class="form-control" placeholder="Вулиця, будинок, квартира">
+          </div>
+        </div>
+
+        <!-- 03 / Оплата -->
+        <div class="card-box">
+          <h3>03 / ОПЛАТА</h3>
+          <label class="custom-checkbox" style="margin-bottom: 12px;">
+            <input type="radio" name="payment" checked> Оплата після узгодження з брендом
+          </label>
+          <label class="custom-checkbox" style="margin-bottom: 24px;">
+            <input type="radio" name="payment"> Інший спосіб — уточнити перед оплатою
+          </label>
+          <div class="form-group">
+            <label>Коментар до замовлення</label>
+            <textarea class="form-control" rows="3" placeholder="Що нам варто знати?"></textarea>
+          </div>
+          <label class="custom-checkbox" style="margin-bottom: 24px;">
+            <input type="checkbox" required checked> Погоджуюся з умовами замовлення та обробкою персональних даних
+          </label>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">Підтвердити замовлення &rarr;</button>
+        </div>
+      </form>
+
+      <aside>
+        <div class="card-box">
+          <h3>ОГЛЯД ЗАМОВЛЕННЯ / 2 РЕЧІ</h3>
+          <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 16px;">
+            <p><strong>Худі CORROSIA</strong> — 1 890 ₴</p>
+            <small style="color: var(--text-gray);">Чорний / M · 1 шт.</small>
+          </div>
+          <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 16px;">
+            <p><strong>Футболка CORROSIA</strong> — 1 290 ₴</p>
+            <small style="color: var(--text-gray);">Чорний / L · 1 шт.</small>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 800;">
+            <span>Разом за товари:</span><span>3 180 ₴</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo-wrap">
+      <div class="footer-gothic-logo">CORROSIA</div>
+      <div class="footer-brand-info"><span>CUSTOM MADE / UKRAINE</span><span>Одягай власну ідентичність.</span></div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col"><h4>Магазин</h4><ul><li><a href="catalog.html">Shop</a></li><li><a href="product.html">Худі CORROSIA</a></li><li><a href="custom.html">Custom</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="about.html">About</a></li></ul></div>
+      <div class="footer-col"><h4>Твій простір</h4><ul><li><a href="cart.html">Кошик</a></li><li><a href="checkout.html">Оформлення</a></li><li><a href="order-success.html">Підтвердження замовлення</a></li><li><a href="auth.html">Вхід / Реєстрація</a></li><li><a href="account.html">Особистий кабінет</a></li></ul></div>
+      <div class="footer-col"><h4>Підтримка</h4><ul><li><a href="contacts.html">Контакти</a></li><li><a href="faq.html">Допомога / FAQ</a></li><li><a href="faq.html">Доставка й оплата</a></li><li><a href="faq.html">Повернення</a></li><li><a href="faq.html">Розміри й догляд</a></li></ul></div>
+    </div>
+    <p class="footer-copyright">&copy; CORROSIA / Усі права захищені. Україна / UA</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

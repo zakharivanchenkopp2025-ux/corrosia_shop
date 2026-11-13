@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Компонент Картки Товару — CORROSIA</title>
+
+  <!-- Підключення Tailwind CSS через CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-[#060606] text-white min-h-screen p-6 md:p-12 font-sans">
+
+  <main class="max-w-7xl mx-auto space-y-8">
+    <!-- Заголовок розділу -->
+    <header class="border-b border-white/10 pb-6">
+      <span class="text-xs font-mono uppercase tracking-[0.3em] text-[#c22222]">
+        04 / Компоненти UI
+      </span>
+      <h1 class="text-3xl md:text-4xl font-black uppercase tracking-tight mt-2">
+        Картка товару
+      </h1>
+      <p class="text-zinc-400 text-sm mt-1">
+        Демонстрація компонента картки в адаптивній сітці (HTML5 + Tailwind CSS).
+      </p>
+    </header>
+
+    <!-- Адаптивна сітка карток -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+      <!-- 1. Картка товару: Худі -->
+      <article class="group relative flex flex-col justify-between w-full bg-[#0d0d0d] border border-white/10 hover:border-[#8b0000] rounded-none p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-950/20 focus-within:border-[#8b0000]">
+        <div>
+          <!-- Фото товару з бейджем та hover-зумом -->
+          <div class="relative w-full aspect-square overflow-hidden bg-black/40 border border-white/5 mb-4">
+            <img 
+              src="assets/images/category-hoodie.png" 
+              alt="Худі CORROSIA" 
+              class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+            <span class="absolute top-3 left-3 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-black/80 text-zinc-300 border border-white/10 backdrop-blur-sm">
+              Custom Drop
+            </span>
+          </div>
+
+          <!-- Заголовок та категорія -->
+          <div class="space-y-1 mb-2">
+            <span class="text-[11px] font-mono uppercase tracking-widest text-[#c22222]">
+              01 / Streetwear
+            </span>
+            <h3 class="text-lg font-bold uppercase tracking-wider text-white transition-colors duration-200 group-hover:text-red-400">
+              <a href="product.html" class="focus-visible:outline-none focus-visible:underline">
+                Худі CORROSIA
+              </a>
+            </h3>
+          </div>
+
+          <!-- Короткий опис товару -->
+          <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed mb-4">
+            Щільна бавовняна тринитка з начосом. Фірмовий готичний графічний принт, оверсайз-силует та посилені манжети.
+          </p>
+
+          <!-- Додаткова інформація (Розміри та Наявність) -->
+          <div class="flex items-center justify-between py-2 border-t border-b border-white/5 text-[11px] font-mono text-zinc-400 mb-5">
+            <span>Розміри: S / M / L / XL</span>
+            <span class="flex items-center gap-1.5 text-zinc-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> В наявності
+            </span>
+          </div>
+        </div>
+
+        <!-- Нижня панель: Ціна та CTA-кнопка -->
+        <div class="flex items-center justify-between gap-3 pt-1">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-500">Ціна</span>
+            <span class="text-lg font-bold font-mono text-white tracking-tight">1 890 ₴</span>
+          </div>
+          <a 
+            href="product.html" 
+            class="inline-flex items-center justify-center min-h-[40px] px-5 py-2 bg-[#8b0000] hover:bg-[#b30000] active:scale-95 text-white text-xs font-bold uppercase tracking-widest rounded-none border border-red-950 shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            Переглянути &rarr;
+          </a>
+        </div>
+      </article>
+
+      <!-- 2. Картка товару: Зіпка -->
+      <article class="group relative flex flex-col justify-between w-full bg-[#0d0d0d] border border-white/10 hover:border-[#8b0000] rounded-none p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-950/20 focus-within:border-[#8b0000]">
+        <div>
+          <div class="relative w-full aspect-square overflow-hidden bg-black/40 border border-white/5 mb-4">
+            <img 
+              src="assets/images/category-zip.png" 
+              alt="Зіпка CORROSIA" 
+              class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+            <span class="absolute top-3 left-3 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-black/80 text-zinc-300 border border-white/10 backdrop-blur-sm">
+              Limited
+            </span>
+          </div>
+
+          <div class="space-y-1 mb-2">
+            <span class="text-[11px] font-mono uppercase tracking-widest text-[#c22222]">
+              02 / Outerwear
+            </span>
+            <h3 class="text-lg font-bold uppercase tracking-wider text-white transition-colors duration-200 group-hover:text-red-400">
+              <a href="product.html" class="focus-visible:outline-none focus-visible:underline">
+                Зіпка CORROSIA
+              </a>
+            </h3>
+          </div>
+
+          <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed mb-4">
+            Подовжений крій, масивна металева блискавка та принт на рукавах і спині.
+          </p>
+
+          <div class="flex items-center justify-between py-2 border-t border-b border-white/5 text-[11px] font-mono text-zinc-400 mb-5">
+            <span>Розміри: M / L</span>
+            <span class="flex items-center gap-1.5 text-zinc-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> В наявності
+            </span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 pt-1">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-500">Ціна</span>
+            <span class="text-lg font-bold font-mono text-white tracking-tight">2 290 ₴</span>
+          </div>
+          <a 
+            href="product.html" 
+            class="inline-flex items-center justify-center min-h-[40px] px-5 py-2 bg-[#8b0000] hover:bg-[#b30000] active:scale-95 text-white text-xs font-bold uppercase tracking-widest rounded-none border border-red-950 shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            Переглянути &rarr;
+          </a>
+        </div>
+      </article>
+
+      <!-- 3. Картка товару: Футболка -->
+      <article class="group relative flex flex-col justify-between w-full bg-[#0d0d0d] border border-white/10 hover:border-[#8b0000] rounded-none p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-950/20 focus-within:border-[#8b0000]">
+        <div>
+          <div class="relative w-full aspect-square overflow-hidden bg-black/40 border border-white/5 mb-4">
+            <img 
+              src="assets/images/category-tee.png" 
+              alt="Футболка CORROSIA" 
+              class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+            <span class="absolute top-3 left-3 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-black/80 text-zinc-300 border border-white/10 backdrop-blur-sm">
+              Basic
+            </span>
+          </div>
+
+          <div class="space-y-1 mb-2">
+            <span class="text-[11px] font-mono uppercase tracking-widest text-[#c22222]">
+              03 / Streetwear
+            </span>
+            <h3 class="text-lg font-bold uppercase tracking-wider text-white transition-colors duration-200 group-hover:text-red-400">
+              <a href="product.html" class="focus-visible:outline-none focus-visible:underline">
+                Футболка CORROSIA
+              </a>
+            </h3>
+          </div>
+
+          <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed mb-4">
+            Оверсайз-крій зі спущеною лінією плеча, 100% щільна бавовна 240 г/м².
+          </p>
+
+          <div class="flex items-center justify-between py-2 border-t border-b border-white/5 text-[11px] font-mono text-zinc-400 mb-5">
+            <span>Розміри: S / M / L</span>
+            <span class="flex items-center gap-1.5 text-zinc-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> В наявності
+            </span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 pt-1">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-500">Ціна</span>
+            <span class="text-lg font-bold font-mono text-white tracking-tight">1 290 ₴</span>
+          </div>
+          <a 
+            href="product.html" 
+            class="inline-flex items-center justify-center min-h-[40px] px-5 py-2 bg-[#8b0000] hover:bg-[#b30000] active:scale-95 text-white text-xs font-bold uppercase tracking-widest rounded-none border border-red-950 shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            Переглянути &rarr;
+          </a>
+        </div>
+      </article>
+
+      <!-- 4. Картка товару: Штани Cargo -->
+      <article class="group relative flex flex-col justify-between w-full bg-[#0d0d0d] border border-white/10 hover:border-[#8b0000] rounded-none p-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-950/20 focus-within:border-[#8b0000]">
+        <div>
+          <div class="relative w-full aspect-square overflow-hidden bg-black/40 border border-white/5 mb-4">
+            <img 
+              src="assets/images/category-cargo.png" 
+              alt="Штани Cargo" 
+              class="w-full h-full object-cover object-center transition-transform duration-500 ease-out group-hover:scale-105"
+              loading="lazy"
+            />
+            <span class="absolute top-3 left-3 px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest bg-black/80 text-zinc-300 border border-white/10 backdrop-blur-sm">
+              New
+            </span>
+          </div>
+
+          <div class="space-y-1 mb-2">
+            <span class="text-[11px] font-mono uppercase tracking-widest text-[#c22222]">
+              04 / Pants
+            </span>
+            <h3 class="text-lg font-bold uppercase tracking-wider text-white transition-colors duration-200 group-hover:text-red-400">
+              <a href="product.html" class="focus-visible:outline-none focus-visible:underline">
+                Штани Cargo
+              </a>
+            </h3>
+          </div>
+
+          <p class="text-xs text-zinc-400 line-clamp-2 leading-relaxed mb-4">
+            Багатофункціональні кишені, регульовані стропи на манжетах та зносостійкий рипстоп.
+          </p>
+
+          <div class="flex items-center justify-between py-2 border-t border-b border-white/5 text-[11px] font-mono text-zinc-400 mb-5">
+            <span>Розміри: M / L / XL</span>
+            <span class="flex items-center gap-1.5 text-zinc-300">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> В наявності
+            </span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 pt-1">
+          <div class="flex flex-col">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-zinc-500">Ціна</span>
+            <span class="text-lg font-bold font-mono text-white tracking-tight">2 690 ₴</span>
+          </div>
+          <a 
+            href="product.html" 
+            class="inline-flex items-center justify-center min-h-[40px] px-5 py-2 bg-[#8b0000] hover:bg-[#b30000] active:scale-95 text-white text-xs font-bold uppercase tracking-widest rounded-none border border-red-950 shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            Переглянути &rarr;
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+</body>
+</html>

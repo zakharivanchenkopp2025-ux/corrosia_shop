@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Atelier — Бриф</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="index.html" class="logo">CORROSIA</a>
+    <nav class="main-nav">
+      <ul class="nav-list">
+        <li><a href="catalog.html" class="nav-link">Shop</a></li>
+        <li><a href="custom.html" class="nav-link active">Custom</a></li>
+        <li><a href="gallery.html" class="nav-link">Gallery</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+    <div class="header-actions">
+      <a href="cart.html" class="cart-box-btn">Кошик (2)</a>
+      <a href="custom.html" class="btn btn-primary">Створити свою річ</a>
+    </div>
+  </header>
+
+  <main class="page-container">
+    <span class="page-meta">06 / CORROSIA — CUSTOM STREETWEAR</span>
+    <h1 class="page-title">ТВОЯ ІДЕЯ. НАШ ДОСВІД.</h1>
+    <p class="page-desc">Custom atelier / Від першого референсу до твоєї речі.</p>
+
+    <div class="split-layout">
+      <!-- Ліва колонка: Форма брифу -->
+      <form action="#" method="post">
+        <!-- Блок 01: Основа -->
+        <div class="card-box">
+          <h3>01 / ОСНОВА</h3>
+          <div class="form-group">
+            <label>Базова річ *</label>
+            <select class="form-control"><option>Худі</option><option>Зіпка</option><option>Футболка</option><option>Штани Cargo</option></select>
+          </div>
+          <div class="form-group">
+            <label>Розмір *</label>
+            <select class="form-control"><option>M</option><option>S</option><option>L</option><option>XL</option></select>
+          </div>
+          <div class="form-group">
+            <label>Колір основи</label>
+            <select class="form-control"><option>Чорний</option></select>
+            <small style="color: var(--text-muted); display: block; margin-top: 6px;">Іншу основу або особливу посадку опиши в ідеї.</small>
+          </div>
+        </div>
+
+        <!-- Блок 02: Твоя ідея -->
+        <div class="card-box">
+          <h3>02 / ТВОЯ ІДЕЯ</h3>
+          <div class="form-group">
+            <label>Опис задуму *</label>
+            <textarea class="form-control" rows="4" placeholder="Що має бути на речі? Де розмістити дизайн?"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Деталі та побажання</label>
+            <textarea class="form-control" rows="3" placeholder="Настрій, композиція, важливі елементи..."></textarea>
+          </div>
+          <div class="form-group">
+            <label>РЕФЕРЕНСИ</label>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px;">Додай зображення, які передають твій задум. Це статичний приклад завантаження.</p>
+            <button type="button" class="btn btn-secondary" style="width: 100%;">+ Завантажити референси</button>
+            <div style="display: flex; justify-content: space-between; margin-top: 8px; color: var(--text-gray); font-size: 0.85rem;">
+              <span>reference.jpg</span><span>Приклад файлу &times;</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Блок 03: Контакт -->
+        <div class="card-box">
+          <h3>03 / КОНТАКТ</h3>
+          <div class="form-group">
+            <label>Як до тебе звертатися *</label>
+            <input type="text" class="form-control" placeholder="Твоє ім'я" required>
+          </div>
+          <div class="form-group">
+            <label>Email для відповіді *</label>
+            <input type="email" class="form-control" placeholder="Твій email" required>
+          </div>
+          <div class="form-group">
+            <label>Додатковий контакт</label>
+            <input type="text" class="form-control" placeholder="За бажанням">
+          </div>
+          <label class="custom-checkbox">
+            <input type="checkbox" required checked> Погоджуюся на обробку даних для відповіді на запит
+          </label>
+        </div>
+      </form>
+
+      <!-- Права колонка: Саммарі розрахунку -->
+      <aside>
+        <div class="card-box">
+          <span style="color: var(--text-muted); font-size: 0.75rem; letter-spacing: 1px;">ТВІЙ CUSTOM-ЗАПИТ</span>
+          <h2 style="font-size: 1.8rem; margin: 12px 0 20px;">ВІД ІДЕЇ ДО ФОРМИ</h2>
+          <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <span style="color: var(--text-gray);">Основа:</span><span>Худі</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+              <span style="color: var(--text-gray);">Розмір / колір:</span><span>M / Чорний</span>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+              <span style="color: var(--text-gray);">Референси:</span><span>1 приклад</span>
+            </div>
+          </div>
+          <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Розрахуємо після брифу</h3>
+          <p style="color: var(--text-gray); font-size: 0.85rem; margin-bottom: 24px;">Вартість, можливість втілення та строки погодимо після уточнення деталей.</p>
+          <a href="order-success.html" class="btn btn-primary" style="width: 100%; margin-bottom: 16px;">Надіслати бриф &rarr;</a>
+          <small style="color: var(--text-muted); display: block;">Запит не є оплатою чи підтвердженим замовленням.</small>
+        </div>
+
+        <div class="card-box">
+          <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 16px;">Потрібна допомога з ідеєю? Напиши нам через сторінку контактів.</p>
+          <a href="contacts.html" class="btn btn-secondary" style="width: 100%;">Поставити питання &rarr;</a>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo-wrap">
+      <div class="footer-gothic-logo">CORROSIA</div>
+      <div class="footer-brand-info"><span>CUSTOM MADE / UKRAINE</span><span>Одягай власну ідентичність.</span></div>
+    </div>
+    <div class="footer-grid">
+      <div class="footer-col"><h4>Магазин</h4><ul><li><a href="catalog.html">Shop</a></li><li><a href="product.html">Худі CORROSIA</a></li><li><a href="custom.html">Custom</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="about.html">About</a></li></ul></div>
+      <div class="footer-col"><h4>Твій простір</h4><ul><li><a href="cart.html">Кошик</a></li><li><a href="checkout.html">Оформлення</a></li><li><a href="order-success.html">Підтвердження замовлення</a></li><li><a href="auth.html">Вхід / Реєстрація</a></li><li><a href="account.html">Особистий кабінет</a></li></ul></div>
+      <div class="footer-col"><h4>Підтримка</h4><ul><li><a href="contacts.html">Контакти</a></li><li><a href="faq.html">Допомога / FAQ</a></li><li><a href="faq.html">Доставка й оплата</a></li><li><a href="faq.html">Повернення</a></li><li><a href="faq.html">Розміри й догляд</a></li></ul></div>
+    </div>
+    <p class="footer-copyright">&copy; CORROSIA / Усі права захищені. Україна / UA</p>
+  </footer>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
