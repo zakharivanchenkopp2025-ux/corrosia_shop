@@ -1,758 +1,327 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="uk" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Лабораторна робота №6 — CORROSIA</title>
-
-  <!-- 1. CDN Tailwind CSS (Етап 3) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#060606">
+  <title>CORROSIA — Кастомний стрітвір та ательє індивідуального пошиття</title>
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- 2. Власні стилі з ЛР№5 -->
-  <link rel="stylesheet" href="assets/css/style.css" />
-
-  <style>
-    /* Базові стилі Hero-блоку та промо-секцій сайту */
-    .hero {
-      display: flex;
-      align-items: stretch;
-      justify-content: space-between;
-      padding: 60px 60px 40px;
-      gap: 60px;
-      min-height: calc(100vh - 85px);
-      position: relative;
-      background-color: var(--bg-main, #060606);
-      background-image: 
-        radial-gradient(circle at 80% 35%, rgba(139, 0, 0, 0.14) 0%, transparent 60%),
-        radial-gradient(circle at 15% 85%, rgba(255, 255, 255, 0.04) 0%, transparent 45%);
-    }
-
-    .hero-left {
-      flex: 1;
-      max-width: 620px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      z-index: 2;
-    }
-
-    .tagline {
-      color: #c22222;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero h1 {
-      font-size: 3.8rem;
-      line-height: 1.05;
-      font-weight: 900;
-      letter-spacing: -0.5px;
-      margin-bottom: 28px;
-      color: #ffffff;
-    }
-
-    .hero-desc {
-      color: #d1d1d1;
-      font-size: 1.05rem;
-      line-height: 1.6;
-      margin-bottom: 36px;
-      max-width: 520px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 16px;
-    }
-
-    .hero-right {
-      flex: 1.1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      z-index: 2;
-    }
-
-    .hero-media {
-      width: 100%;
-      height: 100%;
-      max-height: 620px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
-      background-color: var(--bg-card, #0d0d0d);
-    }
-
-    .hero-media img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-      filter: contrast(1.05) brightness(0.98);
-      transition: transform 0.6s ease;
-    }
-
-    .hero-media:hover img {
-      transform: scale(1.02);
-    }
-
-    .hero-meta {
-      display: flex;
-      justify-content: space-between;
-      color: var(--text-muted, #666666);
-      font-size: 0.75rem;
-      letter-spacing: 1.5px;
-      margin-top: 14px;
-    }
-
-    /* Секція переваг */
-    .features-strip {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      padding: 60px;
-      border-top: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-      border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-      background-color: #040404;
-    }
-
-    .feature-item {
-      background-color: var(--bg-card, #0d0d0d);
-      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-      padding: 30px;
-      transition: border-color 0.25s ease, transform 0.25s ease;
-    }
-
-    .feature-item:hover {
-      border-color: rgba(255, 255, 255, 0.25);
-      transform: translateY(-2px);
-    }
-
-    .feature-item h3 {
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: 0.5px;
-      margin-bottom: 12px;
-    }
-
-    .feature-item p {
-      color: var(--text-gray, #a3a3a3);
-      font-size: 0.9rem;
-    }
-
-    /* Категорії */
-    .categories-preview-grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
-      margin-top: 30px;
-    }
-
-    .category-card {
-      background-color: var(--bg-card, #0d0d0d);
-      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-      padding: 16px;
-      display: block;
-      transition: border-color 0.25s ease, transform 0.25s ease;
-    }
-
-    .category-card:hover {
-      border-color: rgba(255, 255, 255, 0.3);
-      transform: translateY(-3px);
-    }
-
-    .category-card img {
-      width: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      margin-bottom: 16px;
-    }
-
-    .category-card h4 {
-      font-size: 1rem;
-      font-weight: 700;
-    }
-
-    /* Ательє */
-    .atelier-split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-      margin: 80px 0;
-    }
-
-    .atelier-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin: 30px 0 36px;
-    }
-
-    .step-box {
-      background-color: var(--bg-card, #0d0d0d);
-      border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
-      padding: 20px 16px;
-    }
-
-    .step-box strong {
-      color: #c22222;
-      display: block;
-      margin-bottom: 6px;
-      font-size: 1.1rem;
-    }
-
-    .step-box p {
-      color: var(--text-gray, #a3a3a3);
-      font-size: 0.85rem;
-    }
-
-    .section-heading {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
-
-    .works-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    @media (max-width: 1023px) {
-      .hero {
-        padding: 48px 32px 32px;
-        gap: 32px;
-      }
-
-      .hero h1 {
-        font-size: 3rem;
-      }
-
-      .features-strip {
-        padding: 40px 32px;
-        gap: 16px;
-      }
-
-      .page-container {
-        padding: 48px 32px;
-      }
-
-      .categories-preview-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .atelier-split {
-        gap: 32px;
-        margin: 56px 0;
-      }
-    }
-
-    @media (max-width: 767px) {
-      .hero {
-        display: block;
-        padding: 40px 20px 28px;
-        min-height: auto;
-      }
-
-      .hero-left {
-        max-width: none;
-      }
-
-      .tagline {
-        margin-bottom: 16px;
-        font-size: 0.75rem;
-      }
-
-      .hero h1 {
-        font-size: clamp(2.2rem, 11vw, 3rem);
-        margin-bottom: 20px;
-      }
-
-      .hero-desc {
-        font-size: 1rem;
-        margin-bottom: 28px;
-      }
-
-      .hero-buttons {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      .hero-buttons .btn {
-        width: 100%;
-      }
-
-      .hero-right {
-        margin-top: 36px;
-      }
-
-      .hero-media {
-        height: min(112vw, 520px);
-      }
-
-      .hero-meta {
-        font-size: 0.65rem;
-        gap: 12px;
-      }
-
-      .features-strip {
-        grid-template-columns: 1fr;
-        padding: 32px 20px;
-      }
-
-      .feature-item {
-        padding: 24px;
-      }
-
-      .page-container {
-        padding: 40px 20px;
-      }
-
-      .section-heading {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 20px;
-      }
-
-      .section-heading .btn {
-        width: 100%;
-      }
-
-      .categories-preview-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-      }
-
-      .category-card {
-        padding: 12px;
-      }
-
-      .atelier-split {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        margin: 40px 0;
-      }
-
-      .atelier-steps {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        margin: 24px 0 28px;
-      }
-
-      .atelier-split .btn {
-        width: 100%;
-      }
-
-      .works-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 12px !important;
-      }
-
-      .page-container h2 {
-        font-size: clamp(1.8rem, 9vw, 2.4rem) !important;
-      }
-
-      .cart-box-btn,
-      #mobile-menu-toggle {
-        min-height: 44px;
-      }
-
-      #mobile-menu a {
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body class="bg-[#060606] text-white">
+<body class="min-h-screen overflow-x-hidden bg-[#060606] text-white">
+  <a href="#main-content" class="sr-only fixed left-4 top-4 z-[100] bg-white px-4 py-3 font-bold text-[#060606] focus:not-sr-only">Перейти до основного вмісту</a>
+  <header class="sticky top-0 z-50 border-b border-white/10 bg-[#060606]/95 backdrop-blur-md">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between gap-3 md:h-20">
+        <a href="index.html" title="CORROSIA — головна" aria-current="page" class="shrink-0 text-xl font-black tracking-[0.22em] text-white focus:outline-none focus:ring-2 focus:ring-[#c22222]" aria-label="CORROSIA — головна">
+          CORROSIA
+        </a>
 
-  <!-- Адаптивний Header (Tailwind CSS) -->
-  <header class="sticky top-0 z-50 w-full bg-[#060606]/95 backdrop-blur-md border-b border-white/10 transition-colors duration-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20 gap-4">
-        
-        <!-- 1. Логотип зліва -->
-        <div class="flex-shrink-0 flex items-center">
-          <a href="index.html" class="inline-flex items-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600">
-            <img 
-              src="assets/images/logo.png" 
-              alt="CORROSIA" 
-              class="h-8 md:h-10 w-auto object-contain transition-opacity duration-200 group-hover:opacity-80"
-            />
-          </a>
-        </div>
-
-        <!-- 2. Десктопна навігація (горизонтальна від md) -->
-        <nav class="hidden md:flex items-center gap-8" aria-label="Головна навігація">
-          <a href="catalog.html" class="text-sm font-medium tracking-wider uppercase text-zinc-300 hover:text-white transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded-sm">Shop</a>
-          <a href="custom.html" class="text-sm font-medium tracking-wider uppercase text-zinc-300 hover:text-white transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded-sm">Custom</a>
-          <a href="gallery.html" class="text-sm font-medium tracking-wider uppercase text-zinc-300 hover:text-white transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded-sm">Gallery</a>
-          <a href="about.html" class="text-sm font-medium tracking-wider uppercase text-zinc-300 hover:text-white transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600 rounded-sm">About</a>
+        <nav class="hidden items-center gap-7 lg:flex" aria-label="Головна навігація">
+          <a href="catalog.html" class="text-sm font-medium uppercase tracking-wider text-[#d1d1d1] transition-colors duration-200 hover:text-white focus:outline-none focus:text-white focus-visible:ring-2 focus-visible:ring-[#c22222]">Shop</a>
+          <a href="custom.html" class="text-sm font-medium uppercase tracking-wider text-[#d1d1d1] transition-colors duration-200 hover:text-white focus:outline-none focus:text-white focus-visible:ring-2 focus-visible:ring-[#c22222]">Custom</a>
+          <a href="gallery.html" class="text-sm font-medium uppercase tracking-wider text-[#d1d1d1] transition-colors duration-200 hover:text-white focus:outline-none focus:text-white focus-visible:ring-2 focus-visible:ring-[#c22222]">Gallery</a>
+          <a href="about.html" class="text-sm font-medium uppercase tracking-wider text-[#d1d1d1] transition-colors duration-200 hover:text-white focus:outline-none focus:text-white focus-visible:ring-2 focus-visible:ring-[#c22222]">About</a>
         </nav>
 
-        <!-- 3. Дії справа: Кошик, CTA та Гамбургер -->
-        <div class="flex items-center gap-3 sm:gap-4">
-          <a href="cart.html" class="cart-box-btn min-h-[44px] inline-flex items-center px-3.5 py-2 text-xs uppercase tracking-wider font-semibold text-zinc-200 border border-white/15 hover:border-white/40 hover:text-white transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600">
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="cart.html" class="inline-flex min-h-11 items-center justify-center border border-white/15 px-3 py-2 text-xs font-semibold uppercase tracking-wider text-[#d1d1d1] transition-colors duration-200 hover:border-white/40 hover:bg-white/[0.08] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">
             Кошик (0)
           </a>
-
-          <a href="custom.html" class="hidden md:inline-flex items-center justify-center min-h-[42px] px-5 py-2.5 bg-[#8b0000] hover:bg-[#b30000] active:scale-95 text-white text-xs uppercase tracking-widest font-bold border border-red-900/60 shadow-sm transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600">
-            Створити свою річ
+          <a href="custom.html" class="hidden min-h-11 items-center justify-center border border-[#8b0000] bg-[#8b0000] px-5 py-2 text-xs font-bold uppercase tracking-widest text-white transition-colors duration-200 hover:border-[#b30000] hover:bg-[#b30000] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222] lg:inline-flex">
+            Створити річ
           </a>
 
-          <!-- Кнопка мобільного меню (гамбургер) -->
-          <button 
-            type="button" 
-            id="mobile-menu-toggle" 
-            class="inline-flex md:hidden items-center justify-center p-2 text-zinc-400 hover:text-white hover:bg-white/5 border border-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600" 
-            aria-expanded="false" 
-            aria-label="Відкрити головне меню"
-          >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-            </svg>
-          </button>
+          <details class="group relative lg:hidden">
+            <summary title="Відкрити або закрити головне меню" aria-label="Відкрити або закрити головне меню" class="flex min-h-11 min-w-11 list-none cursor-pointer items-center justify-center border border-white/10 text-[#d1d1d1] transition-colors duration-200 hover:border-white/30 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">
+              <span class="sr-only">Відкрити меню</span>
+              <svg class="size-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="square" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+            </summary>
+            <nav class="absolute right-0 top-14 w-[min(18rem,calc(100vw-2rem))] border border-white/10 bg-[#090909] p-3" aria-label="Мобільна навігація">
+              <a href="catalog.html" title="Перейти до каталогу" class="flex min-h-11 items-center border-l-2 border-transparent px-3 text-sm font-semibold uppercase tracking-wider text-[#d1d1d1] transition-colors duration-200 hover:border-[#8b0000] hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Shop</a>
+              <a href="custom.html" title="Перейти до кастомного ательє" class="flex min-h-11 items-center border-l-2 border-transparent px-3 text-sm font-semibold uppercase tracking-wider text-[#d1d1d1] transition-colors duration-200 hover:border-[#8b0000] hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Custom</a>
+              <a href="gallery.html" title="Перейти до галереї робіт" class="flex min-h-11 items-center border-l-2 border-transparent px-3 text-sm font-semibold uppercase tracking-wider text-[#d1d1d1] transition-colors duration-200 hover:border-[#8b0000] hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Gallery</a>
+              <a href="about.html" title="Перейти до інформації про бренд" class="flex min-h-11 items-center border-l-2 border-transparent px-3 text-sm font-semibold uppercase tracking-wider text-[#d1d1d1] transition-colors duration-200 hover:border-[#8b0000] hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">About</a>
+              <a href="custom.html" title="Створити свою річ у кастомному ательє" class="mt-2 flex min-h-11 w-full items-center justify-center bg-[#8b0000] px-4 text-xs font-bold uppercase tracking-widest text-white transition-colors duration-200 hover:bg-[#b30000] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Створити свою річ</a>
+            </nav>
+          </details>
         </div>
-      </div>
-    </div>
-
-    <!-- Мобільне меню (випадаюче, приховане за замовчуванням) -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-white/10 bg-[#090909] px-4 pt-3 pb-6 space-y-3">
-      <nav class="flex flex-col space-y-2" aria-label="Мобільна навігація">
-        <a href="catalog.html" class="block px-3 py-2 text-base font-medium uppercase tracking-wider text-zinc-300 hover:text-white hover:bg-white/5 border-l-2 border-transparent hover:border-[#8b0000] transition-all">Shop</a>
-        <a href="custom.html" class="block px-3 py-2 text-base font-medium uppercase tracking-wider text-zinc-300 hover:text-white hover:bg-white/5 border-l-2 border-transparent hover:border-[#8b0000] transition-all">Custom</a>
-        <a href="gallery.html" class="block px-3 py-2 text-base font-medium uppercase tracking-wider text-zinc-300 hover:text-white hover:bg-white/5 border-l-2 border-transparent hover:border-[#8b0000] transition-all">Gallery</a>
-        <a href="about.html" class="block px-3 py-2 text-base font-medium uppercase tracking-wider text-zinc-300 hover:text-white hover:bg-white/5 border-l-2 border-transparent hover:border-[#8b0000] transition-all">About</a>
-      </nav>
-      <div class="pt-3 border-t border-white/10">
-        <a href="custom.html" class="flex w-full items-center justify-center min-h-[44px] py-3 px-4 bg-[#8b0000] hover:bg-[#b30000] text-white text-xs uppercase tracking-widest font-bold transition-all text-center">
-          Створити свою річ
-        </a>
       </div>
     </div>
   </header>
 
-  <!-- Головний екран (Hero) -->
-  <main>
-    <section class="hero">
-      <div class="hero-left">
-        <p class="tagline">CUSTOM STREETWEAR / UKRAINE</p>
-        <h1>СТВОРИ РІЧ,<br>ЯКОЇ НЕ БУДЕ<br>БІЛЬШЕ НІ В КОГО.</h1>
-        <p class="hero-desc">Готові дропи або кастомний одяг за твоєю ідеєю — від першого референсу до унікальної речі, створеної під тебе.</p>
-        <div class="hero-buttons">
-          <a href="custom.html" class="btn btn-primary">Створити свою річ &rarr;</a>
-          <a href="catalog.html" class="btn btn-secondary">Дивитись колекцію &rarr;</a>
+  <main id="main-content">
+    <section class="relative">
+      <div class="mx-auto grid max-w-7xl items-center gap-10 px-4 py-12 sm:px-6 sm:py-16 md:py-20 lg:grid-cols-2 lg:px-8 lg:py-24">
+        <div class="max-w-xl">
+          <p class="mb-5 font-mono text-xs font-bold uppercase tracking-widest text-[#8b0000] sm:text-sm">CUSTOM STREETWEAR / UKRAINE</p>
+          <h1 class="text-4xl font-black leading-[1.02] tracking-tight sm:text-5xl lg:text-5xl xl:text-6xl">СТВОРИ РІЧ,<br>ЯКОЇ НЕ БУДЕ<br>БІЛЬШЕ НІ В КОГО.</h1>
+          <p class="mt-6 max-w-lg text-base leading-7 text-[#d1d1d1] sm:text-lg">Готові дропи або кастомний одяг за твоєю ідеєю — від першого референсу до унікальної речі, створеної під тебе.</p>
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a href="custom.html" class="inline-flex min-h-11 w-full items-center justify-center border border-[#8b0000] bg-[#8b0000] px-5 py-2 text-sm font-bold text-white transition-colors duration-200 hover:border-[#b30000] hover:bg-[#b30000] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222] sm:w-auto">
+              Створити свою річ
+            </a>
+            <a href="catalog.html" class="inline-flex min-h-11 w-full items-center justify-center border border-white/20 bg-transparent px-5 py-2 text-sm font-bold text-white transition-colors duration-200 hover:border-white/40 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222] sm:w-auto">
+              Дивитись колекцію
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div class="hero-right">
-        <div class="hero-media">
-          <img src="assets/images/hero.png" alt="CORROSIA Streetwear Model">
-        </div>
-        <div class="hero-meta">
-          <span>CORROSIA / CUSTOM ATELIER</span>
-          <span>2026</span>
+        <div class="min-w-0">
+          <div class="overflow-hidden border border-white/10 bg-[#0d0d0d]">
+            <img src="assets/images/hero.png" alt="Модель у кастомному одязі CORROSIA в майстерні" class="aspect-[4/5] w-full max-w-full object-cover object-center sm:aspect-[16/11] lg:max-h-[620px] lg:aspect-[4/5]">
+          </div>
+          <div class="mt-3 flex items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-widest text-[#8f8f8f] sm:text-xs">
+            <span>CORROSIA / Custom atelier</span>
+            <span>2026</span>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Смуга переваг -->
-    <section class="features-strip">
-      <div class="feature-item">
-        <h3>ТВОЯ ІДЕЯ — ТВОЯ РІЧ</h3>
-        <p>Обери готовий дроп або створи власний дизайн.</p>
-      </div>
-      <div class="feature-item">
-        <h3>ВІД РЕФЕРЕНСУ ДО ЕСКІЗУ</h3>
-        <p>Погоджуємо задум перед виробництвом.</p>
-      </div>
-      <div class="feature-item">
-        <h3>ВИГОТОВЛЕНО В УКРАЇНІ</h3>
-        <p>Власний характер. Власна форма. Без компромісів.</p>
-      </div>
-    </section>
-
-    <!-- Блок категорій -->
-    <section class="page-container">
-      <div class="section-heading">
-        <div>
-          <span class="page-meta">01 / ОБЕРИ СВОЮ ФОРМУ</span>
-          <h2 style="font-size: 2.4rem; font-weight: 900;">КАТЕГОРІЇ</h2>
-        </div>
-        <a href="catalog.html" class="btn btn-secondary">Переглянути всі &rarr;</a>
-      </div>
-
-      <div class="categories-preview-grid">
-        <a href="product.html" class="category-card">
-          <img src="assets/images/category-hoodie.png" alt="Худі" loading="lazy">
-          <h4>Худі</h4>
-        </a>
-        <a href="catalog.html" class="category-card">
-          <img src="assets/images/category-zip.png" alt="Зіпки" loading="lazy">
-          <h4>Зіпки</h4>
-        </a>
-        <a href="catalog.html" class="category-card">
-          <img src="assets/images/category-tee.png" alt="Футболки" loading="lazy">
-          <h4>Футболки</h4>
-        </a>
-        <a href="catalog.html" class="category-card">
-          <img src="assets/images/category-cargo.png" alt="Штани Cargo" loading="lazy">
-          <h4>Штани Cargo</h4>
-        </a>
-        <a href="catalog.html" class="category-card">
-          <img src="assets/images/category-acc.png" alt="Аксесуари" loading="lazy">
-          <h4>Аксесуари</h4>
-        </a>
+    <section class="border-y border-white/10 bg-[#060606]">
+      <div class="mx-auto grid max-w-7xl grid-cols-1 gap-4 px-4 py-10 sm:px-6 sm:py-12 lg:grid-cols-3 lg:px-8">
+        <h2 class="sr-only">Переваги CORROSIA</h2>
+        <article class="border border-white/10 bg-[#0d0d0d] p-6 transition-colors duration-200 hover:border-white/25 sm:p-8">
+          <h3 class="text-lg font-extrabold">ТВОЯ ІДЕЯ — ТВОЯ РІЧ</h3>
+          <p class="mt-3 text-sm leading-6 text-[#a3a3a3]">Обери готовий дроп із каталогу або створи власний унікальний дизайн.</p>
+        </article>
+        <article class="border border-white/10 bg-[#0d0d0d] p-6 transition-colors duration-200 hover:border-white/25 sm:p-8">
+          <h3 class="text-lg font-extrabold">ВІД РЕФЕРЕНСУ ДО ЕСКІЗУ</h3>
+          <p class="mt-3 text-sm leading-6 text-[#a3a3a3]">Детальне опрацювання та погодження задуму перед початком виробництва.</p>
+        </article>
+        <article class="border border-white/10 bg-[#0d0d0d] p-6 transition-colors duration-200 hover:border-white/25 sm:p-8">
+          <h3 class="text-lg font-extrabold">ВИГОТОВЛЕНО В УКРАЇНІ</h3>
+          <p class="mt-3 text-sm leading-6 text-[#a3a3a3]">Власний характер, чітка форма та локальне виробництво без компромісів.</p>
+        </article>
       </div>
     </section>
 
-    <!-- Блок кастом-ательє -->
-    <section class="page-container" style="padding-top: 0;">
-      <div class="atelier-split">
+    <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div class="mb-8 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
         <div>
-          <img src="assets/images/atelier.png" alt="Процес виготовлення" loading="lazy" style="border: 1px solid var(--border-color);">
+          <p class="mb-3 font-mono text-xs uppercase tracking-widest text-[#8f8f8f]">01 / ОБЕРИ СВОЮ ФОРМУ</p>
+          <h2 class="text-3xl font-black tracking-tight sm:text-4xl">КАТЕГОРІЇ</h2>
         </div>
+        <a href="catalog.html" title="Переглянути всі речі CORROSIA" class="inline-flex min-h-11 w-full items-center justify-center border border-white/20 px-5 py-2 text-sm font-semibold transition-colors duration-200 hover:border-white/40 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222] sm:w-auto">Переглянути всі <span aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5">
+        <a href="product.html" title="Переглянути Худі CORROSIA" class="group border border-white/10 bg-[#0d0d0d] p-4 transition-colors duration-200 hover:border-white/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">
+          <img src="assets/images/category-hoodie.png" alt="Худі" loading="lazy" class="aspect-square w-full max-w-full object-cover">
+          <h3 class="mt-4 text-base font-bold">Худі</h3>
+          <p class="mt-2 font-mono text-sm font-bold tracking-widest text-[#8b0000]">1 890 ₴</p>
+          <p class="mt-2 text-xs leading-5 text-[#a3a3a3]">Щільна бавовняна тринитка, фірмовий готичний принт, оверсайз-силует.</p>
+        </a>
+        <a href="catalog.html" title="Переглянути Зіпки CORROSIA" class="group border border-white/10 bg-[#0d0d0d] p-4 transition-colors duration-200 hover:border-white/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">
+          <img src="assets/images/category-zip.png" alt="Зіпки" loading="lazy" class="aspect-square w-full max-w-full object-cover">
+          <h3 class="mt-4 text-base font-bold">Зіпки</h3>
+          <p class="mt-2 font-mono text-sm font-bold tracking-widest text-[#8b0000]">2 290 ₴</p>
+          <p class="mt-2 text-xs leading-5 text-[#a3a3a3]">Подовжений крій, металева блискавка, ручний розпис рукавів і спини.</p>
+        </a>
+        <a href="catalog.html" title="Переглянути Футболки CORROSIA" class="group border border-white/10 bg-[#0d0d0d] p-4 transition-colors duration-200 hover:border-white/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">
+          <img src="assets/images/category-tee.png" alt="Футболки" loading="lazy" class="aspect-square w-full max-w-full object-cover">
+          <h3 class="mt-4 text-base font-bold">Футболки</h3>
+          <p class="mt-2 font-mono text-sm font-bold tracking-widest text-[#8b0000]">1 290 ₴</p>
+          <p class="mt-2 text-xs leading-5 text-[#a3a3a3]">Оверсайз-крій зі спущеною лінією плеча, 100% щільна бавовна.</p>
+        </a>
+        <a href="catalog.html" title="Переглянути Штани Cargo CORROSIA" class="group border border-white/10 bg-[#0d0d0d] p-4 transition-colors duration-200 hover:border-white/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">
+          <img src="assets/images/category-cargo.png" alt="Штани Cargo" loading="lazy" class="aspect-square w-full max-w-full object-cover">
+          <h3 class="mt-4 text-base font-bold">Штани Cargo</h3>
+          <p class="mt-2 font-mono text-sm font-bold tracking-widest text-[#8b0000]">2 690 ₴</p>
+          <p class="mt-2 text-xs leading-5 text-[#a3a3a3]">Місткі кишені, регульовані манжети, зносостійкий рипстоп.</p>
+        </a>
+        <a href="catalog.html" title="Переглянути Аксесуари CORROSIA" class="group border border-white/10 bg-[#0d0d0d] p-4 transition-colors duration-200 hover:border-white/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">
+          <img src="assets/images/category-acc.png" alt="Аксесуари" loading="lazy" class="aspect-square w-full max-w-full object-cover">
+          <h3 class="mt-4 text-base font-bold">Аксесуари</h3>
+          <p class="mt-2 font-mono text-sm font-bold tracking-widest text-[#8b0000]">від 590 ₴</p>
+          <p class="mt-2 text-xs leading-5 text-[#a3a3a3]">Підвіси, шеврони, ланцюги та елементи для кастомізації.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8">
+      <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+        <figure class="atelier-video">
+          <div class="atelier-video__frame border border-white/10">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+              title="Процес створення кастомного одягу CORROSIA"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <figcaption class="atelier-video__caption font-mono">CORROSIA / CUSTOM ATELIER — 2026</figcaption>
+        </figure>
         <div>
-          <span class="page-meta">02 / CUSTOM ATELIER</span>
-          <h2 style="font-size: 2.4rem; font-weight: 900; line-height: 1.1; margin-bottom: 16px;">CUSTOM: ТВОЯ ІДЕЯ.<br>НАШ ДОСВІД.</h2>
-          <p style="color: var(--text-gray); line-height: 1.6;">Опиши задум, завантаж референси, обери базову річ — ми зробимо ескіз і пошиємо унікальний виріб.</p>
-          
-          <div class="atelier-steps">
-            <div class="step-box">
-              <strong>01</strong>
-              <p>Ідея і референси</p>
+          <p class="mb-3 font-mono text-xs uppercase tracking-widest text-[#8f8f8f]">02 / CUSTOM ATELIER</p>
+          <h2 class="text-3xl font-black uppercase leading-tight tracking-tight sm:text-4xl">CUSTOM: Твоя ідея. Наш досвід.</h2>
+          <p class="mt-5 max-w-xl leading-7 text-[#a3a3a3]">Опиши задум, завантаж референси, обери базову річ — ми зробимо ескіз і пошиємо унікальний виріб.</p>
+
+          <div class="mt-7 grid grid-cols-1 gap-3 sm:grid-cols-3">
+            <div class="border border-white/10 bg-[#0d0d0d] p-4">
+              <strong class="block font-mono text-lg tracking-widest text-[#8b0000]">01</strong>
+              <p class="mt-1 text-sm text-[#a3a3a3]">Ідея і референси</p>
             </div>
-            <div class="step-box">
-              <strong>02</strong>
-              <p>Ескіз і погодження</p>
+            <div class="border border-white/10 bg-[#0d0d0d] p-4">
+              <strong class="block font-mono text-lg tracking-widest text-[#8b0000]">02</strong>
+              <p class="mt-1 text-sm text-[#a3a3a3]">Ескіз і погодження</p>
             </div>
-            <div class="step-box">
-              <strong>03</strong>
-              <p>Виробництво</p>
+            <div class="border border-white/10 bg-[#0d0d0d] p-4">
+              <strong class="block font-mono text-lg tracking-widest text-[#8b0000]">03</strong>
+              <p class="mt-1 text-sm text-[#a3a3a3]">Виробництво</p>
             </div>
           </div>
 
-          <a href="custom.html" class="btn btn-primary">Створити кастом &rarr;</a>
+          <a href="#custom-form" class="mt-7 inline-flex min-h-11 w-full items-center justify-center border border-[#8b0000] bg-[#8b0000] px-5 py-2 text-sm font-bold transition-colors duration-200 hover:border-[#b30000] hover:bg-[#b30000] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222] sm:w-auto">
+            Створити кастом
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Блок останніх робіт -->
-    <section class="page-container" style="padding-top: 0; margin-bottom: 60px;">
-      <div class="section-heading" style="margin-bottom: 30px;">
+    <section class="mx-auto max-w-7xl px-4 pb-12 sm:px-6 sm:pb-16 lg:px-8">
+      <div class="mb-8 flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-end">
         <div>
-          <span class="page-meta">03 / АРХІВ ІНДИВІДУАЛЬНОСТІ</span>
-          <h2 style="font-size: 2.4rem; font-weight: 900;">ОСТАННІ РОБОТИ</h2>
+          <p class="mb-3 font-mono text-xs uppercase tracking-widest text-[#8f8f8f]">03 / АРХІВ ІНДИВІДУАЛЬНОСТІ</p>
+          <h2 class="text-3xl font-black tracking-tight sm:text-4xl">ОСТАННІ РОБОТИ</h2>
         </div>
-        <a href="gallery.html" class="btn btn-secondary">Дивитись галерею &rarr;</a>
+        <a href="gallery.html" title="Відкрити галерею кастомних робіт" class="inline-flex min-h-11 w-full items-center justify-center border border-white/20 px-5 py-2 text-sm font-semibold transition-colors duration-200 hover:border-white/40 hover:bg-white/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222] sm:w-auto">Дивитись галерею <span aria-hidden="true">→</span></a>
       </div>
 
-      <div class="works-grid">
-        <div class="category-card">
-          <img src="assets/images/work-4247.png" alt="Худі #4247" loading="lazy">
-          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-gray);">
-            <span>#4247</span><span>Худі</span>
-          </div>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4">
+        <article class="border border-white/10 bg-[#0d0d0d] p-4">
+          <img src="assets/images/work-4247.png" alt="Худі #4247" loading="lazy" class="aspect-[4/5] w-full max-w-full object-cover">
+          <h3 class="mt-3 text-sm font-bold">Худі #4247</h3>
+          <div class="mt-3 flex justify-between font-mono text-sm tracking-widest text-[#a3a3a3]"><span>#4247</span><span>Худі</span></div>
+        </article>
+        <article class="border border-white/10 bg-[#0d0d0d] p-4">
+          <img src="assets/images/work-4246.png" alt="Футболка #4246" loading="lazy" class="aspect-[4/5] w-full max-w-full object-cover">
+          <h3 class="mt-3 text-sm font-bold">Футболка #4246</h3>
+          <div class="mt-3 flex justify-between font-mono text-sm tracking-widest text-[#a3a3a3]"><span>#4246</span><span>Футболка</span></div>
+        </article>
+        <article class="border border-white/10 bg-[#0d0d0d] p-4">
+          <img src="assets/images/work-4245.png" alt="Зіпка #4245" loading="lazy" class="aspect-[4/5] w-full max-w-full object-cover">
+          <h3 class="mt-3 text-sm font-bold">Зіпка #4245</h3>
+          <div class="mt-3 flex justify-between font-mono text-sm tracking-widest text-[#a3a3a3]"><span>#4245</span><span>Зіпка</span></div>
+        </article>
+        <article class="border border-white/10 bg-[#0d0d0d] p-4">
+          <img src="assets/images/work-4244.png" alt="Cargo #4244" loading="lazy" class="aspect-[4/5] w-full max-w-full object-cover">
+          <h3 class="mt-3 text-sm font-bold">Cargo #4244</h3>
+          <div class="mt-3 flex justify-between font-mono text-sm tracking-widest text-[#a3a3a3]"><span>#4244</span><span>Cargo</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="custom-form" class="border-y border-white/10 bg-[#060606] scroll-mt-24">
+      <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div class="max-w-2xl">
+          <h2 class="text-3xl font-black tracking-tight sm:text-4xl">Є ідея кастому? Напиши нам</h2>
+          <p class="mt-4 leading-7 text-[#a3a3a3]">Завантаження референсів, підбір базової речі або індивідуальний розпис — обговоримо деталі та створимо ескіз.</p>
         </div>
-        <div class="category-card">
-          <img src="assets/images/work-4246.png" alt="Футболка #4246" loading="lazy">
-          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-gray);">
-            <span>#4246</span><span>Футболка</span>
+
+        <form class="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-5 md:grid-cols-2" action="#" method="post">
+          <div>
+            <label for="custom-name" class="mb-2 block text-sm font-semibold text-[#d1d1d1]">
+            Ім'я
+            </label>
+            <input id="custom-name" type="text" name="name" required autocomplete="name" aria-describedby="custom-name-error" class="min-h-12 w-full border border-white/20 bg-[#0d0d0d] px-4 py-3 text-base text-white outline-none transition-colors duration-200 hover:border-white/40 focus:border-[#c22222] focus-visible:ring-2 focus-visible:ring-[#c22222] [&:user-invalid]:border-red-500 [&:user-valid]:border-emerald-500">
+            <p id="custom-name-error" class="mt-2 hidden text-sm text-red-400" role="alert">Введіть ваше ім’я.</p>
           </div>
-        </div>
-        <div class="category-card">
-          <img src="assets/images/work-4245.png" alt="Зіпка #4245" loading="lazy">
-          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-gray);">
-            <span>#4245</span><span>Зіпка</span>
+          <div>
+            <label for="custom-contact" class="mb-2 block text-sm font-semibold text-[#d1d1d1]">
+            Email або Telegram
+            </label>
+            <input id="custom-contact" type="text" name="contact" required aria-describedby="custom-contact-error" class="min-h-12 w-full border border-white/20 bg-[#0d0d0d] px-4 py-3 text-base text-white outline-none transition-colors duration-200 hover:border-white/40 focus:border-[#c22222] focus-visible:ring-2 focus-visible:ring-[#c22222] [&:user-invalid]:border-red-500 [&:user-valid]:border-emerald-500">
+            <p id="custom-contact-error" class="mt-2 hidden text-sm text-red-400" role="alert">Введіть Email або Telegram.</p>
           </div>
-        </div>
-        <div class="category-card">
-          <img src="assets/images/work-4244.png" alt="Cargo #4244" loading="lazy">
-          <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-gray);">
-            <span>#4244</span><span>Cargo</span>
+          <div class="md:col-span-2">
+            <label for="custom-subject" class="mb-2 block text-sm font-semibold text-[#d1d1d1]">
+            Базова річ / Тема звернення
+            </label>
+            <input id="custom-subject" type="text" name="subject" required aria-describedby="custom-subject-error" class="min-h-12 w-full border border-white/20 bg-[#0d0d0d] px-4 py-3 text-base text-white outline-none transition-colors duration-200 hover:border-white/40 focus:border-[#c22222] focus-visible:ring-2 focus-visible:ring-[#c22222] [&:user-invalid]:border-red-500 [&:user-valid]:border-emerald-500">
+            <p id="custom-subject-error" class="mt-2 hidden text-sm text-red-400" role="alert">Вкажіть базову річ або тему звернення.</p>
           </div>
-        </div>
+          <div class="md:col-span-2">
+            <label for="custom-message" class="mb-2 block text-sm font-semibold text-[#d1d1d1]">
+            Опис задуму
+            </label>
+            <textarea id="custom-message" name="message" required rows="5" aria-describedby="custom-message-error" class="min-h-32 w-full resize-y border border-white/20 bg-[#0d0d0d] px-4 py-3 text-base text-white outline-none transition-colors duration-200 hover:border-white/40 focus:border-[#c22222] focus-visible:ring-2 focus-visible:ring-[#c22222] [&:user-invalid]:border-red-500 [&:user-valid]:border-emerald-500"></textarea>
+            <p id="custom-message-error" class="mt-2 hidden text-sm text-red-400" role="alert">Опишіть вашу ідею.</p>
+          </div>
+          <div class="md:col-span-2">
+            <div class="flex min-h-12 items-start gap-3">
+              <input
+                id="custom-data-consent"
+                name="dataConsent"
+                type="checkbox"
+                required
+                aria-describedby="custom-data-consent-error"
+                class="mt-1 size-5 shrink-0 accent-[#8b0000] transition-colors hover:accent-[#b30000] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]"
+              >
+              <label for="custom-data-consent" class="text-sm leading-6 text-[#d1d1d1]">
+                Погоджуюсь на обробку наданої інформації
+              </label>
+            </div>
+            <p id="custom-data-consent-error" class="mt-2 hidden text-sm text-red-400" role="alert">
+              Необхідно підтвердити згоду на обробку інформації.
+            </p>
+          </div>
+          <button type="submit" class="inline-flex min-h-12 w-full items-center justify-center border border-[#8b0000] bg-[#8b0000] px-5 py-3 text-sm font-bold text-white transition-colors duration-200 hover:border-[#b30000] hover:bg-[#b30000] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222] md:w-fit md:px-8">
+            Надіслати заявку
+          </button>
+        </form>
       </div>
     </section>
   </main>
 
-  <!-- Підвал сайту -->
-  <!-- Новий семантичний Footer (Етап 10 / Tailwind CSS) -->
-  <footer class="w-full bg-[#050505] text-zinc-300 border-t border-white/10 transition-colors duration-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-12">
-      <!-- Адаптивна Grid сітка: 1 колонка на мобільних, 2 на md, 4 на lg -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8 mb-16">
-        
-        <!-- Колонка 1: Логотип і маніфест бренду -->
-        <div class="space-y-4">
-          <a href="index.html" class="inline-block group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600">
-            <img 
-              src="assets/images/logo.png" 
-              alt="CORROSIA" 
-              class="h-9 w-auto object-contain transition-opacity duration-200 group-hover:opacity-80"
-            />
-          </a>
-          <div class="space-y-1">
-            <span class="block text-[11px] font-mono uppercase tracking-[0.2em] text-[#c22222]">
-              CUSTOM MADE / UKRAINE
-            </span>
-            <p class="text-xs uppercase tracking-wider text-zinc-400 font-semibold">
-              Одягай власну ідентичність.
-            </p>
-          </div>
-          <p class="text-xs text-zinc-400 leading-relaxed max-w-xs">
-            Нішевий кастомний стрітвір та індивідуальне ательє. Від авторського ескізу до унікальної форми без компромісів.
-          </p>
-        </div>
-
-        <!-- Колонка 2: Магазин -->
+  <footer class="border-t border-white/10 bg-[#060606]">
+    <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <h4 class="text-xs font-mono font-bold uppercase tracking-[0.25em] text-white border-l-2 border-[#8b0000] pl-3 mb-5">
-            Магазин
-          </h4>
-          <ul class="space-y-2.5 text-sm" role="list">
-            <li>
-              <a href="catalog.html" class="hover:text-white transition-colors duration-150 inline-block focus-visible:outline-none focus-visible:text-white focus-visible:ring-1 focus-visible:ring-red-600">
-                Каталог дропів
-              </a>
-            </li>
-            <li>
-              <a href="product.html" class="hover:text-white transition-colors duration-150 inline-block focus-visible:outline-none focus-visible:text-white focus-visible:ring-1 focus-visible:ring-red-600">
-                Худі CORROSIA
-              </a>
-            </li>
-            <li>
-              <a href="custom.html" class="hover:text-white transition-colors duration-150 inline-block focus-visible:outline-none focus-visible:text-white focus-visible:ring-1 focus-visible:ring-red-600">
-                Custom Atelier
-              </a>
-            </li>
-            <li>
-              <a href="gallery.html" class="hover:text-white transition-colors duration-150 inline-block focus-visible:outline-none focus-visible:text-white focus-visible:ring-1 focus-visible:ring-red-600">
-                Галерея робіт
-              </a>
-            </li>
-            <li>
-              <a href="about.html" class="hover:text-white transition-colors duration-150 inline-block focus-visible:outline-none focus-visible:text-white focus-visible:ring-1 focus-visible:ring-red-600">
-                Про майстерню
-              </a>
-            </li>
-          </ul>
+          <a href="index.html" class="text-xl font-black tracking-[0.22em] text-white">CORROSIA</a>
+          <p class="mt-4 font-mono text-xs uppercase tracking-widest text-[#8b0000]">Одягай власну ідентичність.</p>
+          <p class="mt-3 max-w-xs text-sm leading-6 text-[#a3a3a3]">Нішевий український бренд кастомного стрітвіру та індивідуальне ательє у Львові. Для нас одяг — спосіб сказати про себе без зайвих слів: не вписатися в готову форму, а створити власну за власними правилами.</p>
         </div>
 
-        <!-- Колонка 3: Сервіс та підтримка -->
+        <nav aria-label="Магазин">
+          <h2 class="border-l-2 border-[#8b0000] pl-3 font-mono text-xs font-bold uppercase tracking-widest">Магазин</h2>
+          <ul class="mt-5 space-y-3 text-sm text-[#a3a3a3]">
+            <li><a href="catalog.html" class="transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Каталог дропів</a></li>
+            <li><a href="product.html" class="transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Худі CORROSIA</a></li>
+            <li><a href="custom.html" class="transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Custom Atelier</a></li>
+            <li><a href="gallery.html" class="transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Галерея робіт</a></li>
+          </ul>
+        </nav>
+
+        <nav aria-label="Підтримка">
+          <h2 class="border-l-2 border-[#8b0000] pl-3 font-mono text-xs font-bold uppercase tracking-widest">Підтримка</h2>
+          <ul class="mt-5 space-y-3 text-sm text-[#a3a3a3]">
+            <li><a href="cart.html" class="transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Твій кошик</a></li>
+            <li><a href="faq.html" class="transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Допомога / FAQ</a></li>
+            <li><a href="faq.html#delivery" class="transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Доставка й оплата</a></li>
+            <li><a href="faq.html#sizes" class="transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Розміри й догляд</a></li>
+          </ul>
+        </nav>
+
         <div>
-          <h4 class="text-xs font-mono font-bold uppercase tracking-[0.25em] text-white border-l-2 border-[#8b0000] pl-3 mb-5">
-            Підтримка
-          </h4>
-          <ul class="space-y-2.5 text-sm" role="list">
-            <li>
-              <a href="cart.html" class="hover:text-white transition-colors duration-150 inline-block focus-visible:outline-none focus-visible:text-white focus-visible:ring-1 focus-visible:ring-red-600">
-                Твій кошик
-              </a>
-            </li>
-            <li>
-              <a href="faq.html" class="hover:text-white transition-colors duration-150 inline-block focus-visible:outline-none focus-visible:text-white focus-visible:ring-1 focus-visible:ring-red-600">
-                Допомога / FAQ
-              </a>
-            </li>
-            <li>
-              <a href="faq.html#delivery" class="hover:text-white transition-colors duration-150 inline-block focus-visible:outline-none focus-visible:text-white focus-visible:ring-1 focus-visible:ring-red-600">
-                Доставка й оплата
-              </a>
-            </li>
-            <li>
-              <a href="faq.html#sizes" class="hover:text-white transition-colors duration-150 inline-block focus-visible:outline-none focus-visible:text-white focus-visible:ring-1 focus-visible:ring-red-600">
-                Розміри й догляд
-              </a>
-            </li>
-            <li>
-              <a href="account.html" class="hover:text-white transition-colors duration-150 inline-block focus-visible:outline-none focus-visible:text-white focus-visible:ring-1 focus-visible:ring-red-600">
-                Особистий кабінет
-              </a>
-            </li>
-          </ul>
+          <h2 class="border-l-2 border-[#8b0000] pl-3 font-mono text-xs font-bold uppercase tracking-widest">Зв'язок</h2>
+          <p class="mt-5 text-sm leading-6 text-[#a3a3a3]">Львів, Україна</p>
+          <a href="#custom-form" class="mt-3 inline-block text-sm text-[#d1d1d1] transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Написати нам</a>
         </div>
-
-        <!-- Колонка 4: Контакти та соціальні мережі -->
-        <div class="space-y-4">
-          <h4 class="text-xs font-mono font-bold uppercase tracking-[0.25em] text-white border-l-2 border-[#8b0000] pl-3 mb-5">
-            Зв'язок
-          </h4>
-          <p class="text-xs text-zinc-400">
-            Львів, Україна / Відправка Новою Поштою
-          </p>
-          <p class="text-sm font-mono text-zinc-200">
-            <a href="mailto:info@corrosia.ua" class="hover:text-[#c22222] transition-colors duration-150 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-red-600">
-              info@corrosia.ua
-            </a>
-          </p>
-          
-          <div class="pt-2">
-            <span class="block text-[10px] font-mono uppercase tracking-widest text-zinc-500 mb-3">Соціальні мережі</span>
-            <div class="flex items-center gap-3">
-              <!-- Instagram -->
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="w-10 h-10 flex items-center justify-center bg-[#0d0d0d] border border-white/10 hover:border-[#8b0000] hover:text-white hover:bg-white/5 text-zinc-400 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
-                aria-label="Instagram CORROSIA"
-              >
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </svg>
-              </a>
-
-              <!-- Telegram -->
-              <a 
-                href="https://telegram.org" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="w-10 h-10 flex items-center justify-center bg-[#0d0d0d] border border-white/10 hover:border-[#8b0000] hover:text-white hover:bg-white/5 text-zinc-400 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
-                aria-label="Telegram CORROSIA"
-              >
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
-                </svg>
-              </a>
-
-              <!-- TikTok -->
-              <a 
-                href="https://tiktok.com" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                class="w-10 h-10 flex items-center justify-center bg-[#0d0d0d] border border-white/10 hover:border-[#8b0000] hover:text-white hover:bg-white/5 text-zinc-400 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
-                aria-label="TikTok CORROSIA"
-              >
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.24 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-
       </div>
 
-      <!-- Нижня панель: Копірайт та посилання -->
-      <div class="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
-        <p>
-          &copy; 2026 CORROSIA. Всі права захищені. Україна / UA
-        </p>
-        <div class="flex items-center gap-6">
-          <a href="faq.html" class="hover:text-zinc-300 transition-colors">Угода користувача</a>
-          <a href="faq.html" class="hover:text-zinc-300 transition-colors">Політика конфіденційності</a>
+      <div class="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 font-mono text-xs text-[#8f8f8f] sm:flex-row sm:items-center sm:justify-between">
+        <p>© 2026 CORROSIA. Всі права захищені.</p>
+        <div class="flex gap-5">
+          <a href="about.html" class="transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Про бренд</a>
+          <a href="#custom-form" class="transition-colors duration-200 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c22222]">Зв'язок</a>
         </div>
       </div>
     </div>
   </footer>
-
-  <!-- Підключення скрипта -->
-  <script src="assets/js/main.js"></script>
 </body>
 </html>

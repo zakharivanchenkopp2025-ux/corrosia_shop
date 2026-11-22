@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Custom Atelier — Бриф</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -30,21 +31,21 @@
 
     <div class="split-layout">
       <!-- Ліва колонка: Форма брифу -->
-      <form action="#" method="post">
+      <form id="feedbackForm" action="#" method="post" novalidate>
         <!-- Блок 01: Основа -->
         <div class="card-box">
           <h3>01 / ОСНОВА</h3>
           <div class="form-group">
-            <label>Базова річ *</label>
-            <select class="form-control"><option>Худі</option><option>Зіпка</option><option>Футболка</option><option>Штани Cargo</option></select>
+            <label for="base-item">Базова річ *</label>
+            <select id="base-item" name="base-item" class="form-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B]"><option>Худі</option><option>Зіпка</option><option>Футболка</option><option>Штани Cargo</option></select>
           </div>
           <div class="form-group">
-            <label>Розмір *</label>
-            <select class="form-control"><option>M</option><option>S</option><option>L</option><option>XL</option></select>
+            <label for="size">Розмір *</label>
+            <select id="size" name="size" class="form-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B]"><option>M</option><option>S</option><option>L</option><option>XL</option></select>
           </div>
           <div class="form-group">
-            <label>Колір основи</label>
-            <select class="form-control"><option>Чорний</option></select>
+            <label for="base-color">Колір основи</label>
+            <select id="base-color" name="base-color" class="form-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B]"><option>Чорний</option></select>
             <small style="color: var(--text-muted); display: block; margin-top: 6px;">Іншу основу або особливу посадку опиши в ідеї.</small>
           </div>
         </div>
@@ -53,12 +54,13 @@
         <div class="card-box">
           <h3>02 / ТВОЯ ІДЕЯ</h3>
           <div class="form-group">
-            <label>Опис задуму *</label>
-            <textarea class="form-control" rows="4" placeholder="Що має бути на речі? Де розмістити дизайн?"></textarea>
+            <label for="message">Опис задуму *</label>
+            <textarea id="message" name="message" class="form-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B]" rows="4" placeholder="Що має бути на речі? Де розмістити дизайн?" aria-describedby="message-error" required></textarea>
+            <p id="message-error" class="validation-error" data-error-for="message" role="alert" hidden></p>
           </div>
           <div class="form-group">
-            <label>Деталі та побажання</label>
-            <textarea class="form-control" rows="3" placeholder="Настрій, композиція, важливі елементи..."></textarea>
+            <label for="details">Деталі та побажання</label>
+            <textarea id="details" name="details" class="form-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B]" rows="3" placeholder="Настрій, композиція, важливі елементи..."></textarea>
           </div>
           <div class="form-group">
             <label>РЕФЕРЕНСИ</label>
@@ -74,20 +76,26 @@
         <div class="card-box">
           <h3>03 / КОНТАКТ</h3>
           <div class="form-group">
-            <label>Як до тебе звертатися *</label>
-            <input type="text" class="form-control" placeholder="Твоє ім'я" required>
+            <label for="username">Як до тебе звертатися *</label>
+            <input id="username" name="username" type="text" class="form-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B]" placeholder="Твоє ім'я" aria-describedby="username-error" required>
+            <p id="username-error" class="validation-error" data-error-for="username" role="alert" hidden></p>
           </div>
           <div class="form-group">
-            <label>Email для відповіді *</label>
-            <input type="email" class="form-control" placeholder="Твій email" required>
+            <label for="email">Email для відповіді *</label>
+            <input id="email" name="email" type="email" class="form-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B]" placeholder="Твій email" aria-describedby="email-error" required>
+            <p id="email-error" class="validation-error" data-error-for="email" role="alert" hidden></p>
           </div>
           <div class="form-group">
-            <label>Додатковий контакт</label>
-            <input type="text" class="form-control" placeholder="За бажанням">
+            <label for="additional-contact">Додатковий контакт</label>
+            <input id="additional-contact" name="additionalContact" type="text" class="form-control focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B]" placeholder="За бажанням">
           </div>
-          <label class="custom-checkbox">
-            <input type="checkbox" required checked> Погоджуюся на обробку даних для відповіді на запит
+          <label class="custom-checkbox min-h-[44px]" for="agreement">
+            <input id="agreement" name="agreement" type="checkbox" class="size-5 shrink-0 rounded-none accent-[#8A0303] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B]" aria-describedby="agreement-error" required>
+            Погоджуюся на обробку даних для відповіді на запит
           </label>
+          <p id="agreement-error" class="validation-error" data-error-for="agreement" role="alert" hidden></p>
+          <button type="submit" class="btn btn-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#09090B]" style="width: 100%; margin-top: 24px;">Надіслати бриф &rarr;</button>
+          <p class="form-status" data-form-status role="status" aria-live="polite" hidden></p>
         </div>
       </form>
 
@@ -133,6 +141,27 @@
     </div>
     <p class="footer-copyright">&copy; CORROSIA / Усі права захищені. Україна / UA</p>
   </footer>
+  <div
+    id="successModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="successModalTitle"
+    aria-describedby="successModalDescription"
+    hidden
+  >
+    <div class="w-full max-w-lg rounded-none border border-white/10 bg-[#0d0d0d] p-6 text-white shadow-2xl sm:p-8" data-modal-content>
+      <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A0303]">CORROSIA / ATELIER</span>
+      <h2 id="successModalTitle" class="mt-5 text-2xl font-black uppercase tracking-tight sm:text-3xl">Заявку успішно прийнято</h2>
+      <p id="successModalDescription" class="mt-4 text-sm leading-6 text-white/70">Майстер зв’яжеться з тобою найближчим часом, щоб уточнити деталі та наступні кроки.</p>
+      <button
+        type="button"
+        class="mt-8 min-h-[44px] w-full rounded-none bg-[#8A0303] px-6 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-[#b30000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d0d]"
+        data-modal-close
+      >Закрити</button>
+    </div>
+  </div>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/validation.js"></script>
 </body>
 </html>

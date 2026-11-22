@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Контакти — CORROSIA</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -30,7 +31,7 @@
 
     <div class="split-layout">
       <!-- Форма звернення -->
-      <form action="#" method="post">
+      <form id="feedbackForm" action="#" method="post" novalidate>
         <div class="card-box">
           <h3>НАПИШИ НАМ</h3>
           <div class="form-group">
@@ -46,25 +47,30 @@
             <input type="text" class="form-control" placeholder="Наприклад, CR-DEMO-01">
           </div>
           <div class="form-group">
-            <label>Ім'я *</label>
-            <input type="text" class="form-control" placeholder="Як до тебе звертатися" required>
+            <label for="username">Ім'я *</label>
+            <input id="username" name="username" type="text" class="form-control" placeholder="Як до тебе звертатися" required>
+            <p class="validation-error" data-error-for="username" role="alert" hidden></p>
           </div>
           <div class="form-group">
-            <label>Email для відповіді *</label>
-            <input type="email" class="form-control" placeholder="Твій email" required>
+            <label for="email">Email для відповіді *</label>
+            <input id="email" name="email" type="email" class="form-control" placeholder="Твій email" required>
+            <p class="validation-error" data-error-for="email" role="alert" hidden></p>
           </div>
           <div class="form-group">
-            <label>Повідомлення *</label>
-            <textarea class="form-control" rows="4" placeholder="Опиши питання та важливі деталі..." required></textarea>
+            <label for="message">Повідомлення *</label>
+            <textarea id="message" name="message" class="form-control" rows="4" placeholder="Опиши питання та важливі деталі..." required></textarea>
+            <p class="validation-error" data-error-for="message" role="alert" hidden></p>
           </div>
           <div class="form-group">
             <button type="button" class="btn btn-secondary" style="width: 100%;">+ Додати зображення</button>
             <small style="color: var(--text-muted); display: block; margin-top: 6px;">Для запиту про custom можна додати референс. Файли тут показані як статичний UI.</small>
           </div>
-          <label class="custom-checkbox" style="margin-bottom: 24px;">
-            <input type="checkbox" required checked> Погоджуюся на обробку даних для відповіді на звернення
+          <label class="custom-checkbox" for="agreement" style="margin-bottom: 24px;">
+            <input id="agreement" name="agreement" type="checkbox" required> Погоджуюся на обробку даних для відповіді на звернення
           </label>
+          <p class="validation-error" data-error-for="agreement" role="alert" hidden></p>
           <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">Надіслати повідомлення &rarr;</button>
+          <p class="form-status" data-form-status role="status" aria-live="polite" hidden></p>
         </div>
       </form>
 
@@ -99,6 +105,27 @@
     </div>
     <p class="footer-copyright">&copy; CORROSIA / Усі права захищені. Україна / UA</p>
   </footer>
+  <div
+    id="successModal"
+    class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="successModalTitle"
+    aria-describedby="successModalDescription"
+    hidden
+  >
+    <div class="w-full max-w-lg rounded-none border border-white/10 bg-[#0d0d0d] p-6 text-white shadow-2xl sm:p-8" data-modal-content>
+      <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#8A0303]">CORROSIA / ATELIER</span>
+      <h2 id="successModalTitle" class="mt-5 text-2xl font-black uppercase tracking-tight sm:text-3xl">Заявку успішно прийнято</h2>
+      <p id="successModalDescription" class="mt-4 text-sm leading-6 text-white/70">Майстер зв’яжеться з тобою найближчим часом, щоб уточнити деталі та наступні кроки.</p>
+      <button
+        type="button"
+        class="mt-8 min-h-[44px] w-full rounded-none bg-[#8A0303] px-6 py-3 text-sm font-semibold uppercase tracking-widest text-white transition-colors hover:bg-[#b30000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d0d]"
+        data-modal-close
+      >Закрити</button>
+    </div>
+  </div>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/validation.js"></script>
 </body>
 </html>
