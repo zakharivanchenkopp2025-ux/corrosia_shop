@@ -20,6 +20,10 @@
 }
 
 /* Pre-init Flexbox: prevents reviews layout shift before Swiper initialization. */
+.reviews-swiper {
+  min-height: 272px;
+}
+
 .reviews-swiper:not(.swiper-initialized) {
   display: flex;
   overflow: hidden;
@@ -31,24 +35,79 @@
 }
 
 .reviews-swiper:not(.swiper-initialized) .swiper-slide {
-  flex: 0 0 100%;
+  flex: 0 0 calc((100% - 32px) / 3);
+  height: 272px;
   min-width: 0;
 }
 
+.reviews-swiper:not(.swiper-initialized) .swiper-slide + .swiper-slide {
+  margin-left: 16px;
+}
+
+.reviews-swiper:not(.swiper-initialized) .swiper-slide:nth-child(n + 4) {
+  display: none;
+}
+
+@media (max-width: 1023px) and (min-width: 640px) {
+  .reviews-swiper:not(.swiper-initialized) .swiper-slide {
+    flex-basis: calc((100% - 16px) / 2);
+  }
+
+  .reviews-swiper:not(.swiper-initialized) .swiper-slide:nth-child(n + 3) {
+    display: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .reviews-swiper,
+  .reviews-swiper:not(.swiper-initialized) .swiper-slide {
+    min-height: 320px;
+  }
+
+  .reviews-swiper:not(.swiper-initialized) .swiper-slide {
+    flex-basis: 100%;
+  }
+
+  .reviews-swiper:not(.swiper-initialized) .swiper-slide + .swiper-slide {
+    display: none;
+  }
+}
+
 .reviews-swiper .swiper-pagination-bullet {
-  background: #FFFFFF;
+  width: 44px;
+  height: 44px;
+  margin: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
   opacity: 0.45;
 }
 
+.reviews-swiper .swiper-pagination-bullet::before {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  content: "";
+}
+
 .reviews-swiper .swiper-pagination-bullet-active {
-  background: #8A0303;
+  background: transparent;
   opacity: 1;
 }
 
 .reviews-swiper .swiper-pagination-bullet-active-main,
 .reviews-swiper .swiper-pagination-bullet-active-prev,
 .reviews-swiper .swiper-pagination-bullet-active-next {
-  background: #8A0303;
+  background: transparent;
+}
+
+.reviews-swiper .swiper-pagination-bullet-active::before,
+.reviews-swiper .swiper-pagination-bullet-active-main::before,
+.reviews-swiper .swiper-pagination-bullet-active-prev::before,
+.reviews-swiper .swiper-pagination-bullet-active-next::before {
+  background: #d94f4f;
 }
 
 .reviews-controls .swiper-button-prev,
