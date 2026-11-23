@@ -176,12 +176,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const cart = getCart();
 
     if (cart.length === 0) {
-      cartItemsContainer.innerHTML = `
-        <div style="padding: 40px 0; color: var(--text-gray);">
-          <p style="font-size: 1.1rem; margin-bottom: 20px;">Твій кошик порожній.</p>
-          <a href="catalog.html" class="btn btn-secondary">&larr; Перейти до покупок</a>
-        </div>
-      `;
+      const emptyState = document.createElement("div");
+      emptyState.style.padding = "40px 0";
+      emptyState.style.color = "var(--text-gray)";
+
+      const emptyText = document.createElement("p");
+      emptyText.style.fontSize = "1.1rem";
+      emptyText.style.marginBottom = "20px";
+      emptyText.textContent = "Твій кошик порожній.";
+
+      const shopLink = document.createElement("a");
+      shopLink.href = "catalog.html";
+      shopLink.className = "btn btn-secondary";
+      shopLink.textContent = "← Перейти до покупок";
+
+      emptyState.appendChild(emptyText);
+      emptyState.appendChild(shopLink);
+      cartItemsContainer.replaceChildren(emptyState);
       if (cartSubtotalEl) cartSubtotalEl.textContent = "0 ₴";
       if (cartTotalEl) cartTotalEl.textContent = "0 ₴";
       if (cartSubtitleEl) cartSubtitleEl.textContent = "0 речей / Кошик порожній";
@@ -190,7 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let subtotal = 0;
     let totalItems = 0;
-    cartItemsContainer.innerHTML = "";
+    cartItemsContainer.replaceChildren();
 
     cart.forEach((item, index) => {
       subtotal += item.price * item.qty;
@@ -198,22 +209,68 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const itemEl = document.createElement("div");
       itemEl.className = "cart-item";
-      itemEl.innerHTML = `
-        <img src="${item.image}" alt="${item.name}" loading="lazy">
-        <div>
-          <h4>${item.name}</h4>
-          <p style="color: var(--text-gray); font-size: 0.9rem;">${item.color} / ${item.size}</p>
-          <strong style="margin-top: 8px; display: block;">${item.price} ₴</strong>
-        </div>
-        <div style="display: flex; gap: 12px; align-items: center;">
-          <div class="qty-wrap" style="margin: 0;">
-            <button class="qty-btn" data-action="dec" data-index="${index}">-</button>
-            <span>${item.qty}</span>
-            <button class="qty-btn" data-action="inc" data-index="${index}">+</button>
-          </div>
-          <button class="btn btn-secondary btn-del" data-index="${index}" style="padding: 6px 12px;">Видалити</button>
-        </div>
-      `;
+
+      const image = document.createElement("img");
+      image.src = typeof item.image === "string" ? item.image : "";
+      image.alt = typeof item.name === "string" ? item.name : "";
+      image.loading = "lazy";
+
+      const info = document.createElement("div");
+      const name = document.createElement("h4");
+      name.textContent = typeof item.name === "string" ? item.name : "";
+
+      const variant = document.createElement("p");
+      variant.style.color = "var(--text-gray)";
+      variant.style.fontSize = "0.9rem";
+      variant.textContent = `${item.color || ""} / ${item.size || ""}`;
+
+      const price = document.createElement("strong");
+      price.style.marginTop = "8px";
+      price.style.display = "block";
+      price.textContent = `${item.price || 0} ₴`;
+      info.appendChild(name);
+      info.appendChild(variant);
+      info.appendChild(price);
+
+      const actions = document.createElement("div");
+      actions.style.display = "flex";
+      actions.style.gap = "12px";
+      actions.style.alignItems = "center";
+
+      const qtyWrap = document.createElement("div");
+      qtyWrap.className = "qty-wrap";
+      qtyWrap.style.margin = "0";
+
+      const decButton = document.createElement("button");
+      decButton.className = "qty-btn";
+      decButton.dataset.action = "dec";
+      decButton.dataset.index = String(index);
+      decButton.textContent = "-";
+
+      const qty = document.createElement("span");
+      qty.textContent = String(item.qty);
+
+      const incButton = document.createElement("button");
+      incButton.className = "qty-btn";
+      incButton.dataset.action = "inc";
+      incButton.dataset.index = String(index);
+      incButton.textContent = "+";
+
+      qtyWrap.appendChild(decButton);
+      qtyWrap.appendChild(qty);
+      qtyWrap.appendChild(incButton);
+
+      const deleteButton = document.createElement("button");
+      deleteButton.className = "btn btn-secondary btn-del";
+      deleteButton.dataset.index = String(index);
+      deleteButton.style.padding = "6px 12px";
+      deleteButton.textContent = "Видалити";
+
+      actions.appendChild(qtyWrap);
+      actions.appendChild(deleteButton);
+      itemEl.appendChild(image);
+      itemEl.appendChild(info);
+      itemEl.appendChild(actions);
       cartItemsContainer.appendChild(itemEl);
     });
 

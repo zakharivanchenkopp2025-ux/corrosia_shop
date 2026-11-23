@@ -66,10 +66,11 @@
           </div>
           <div class="form-group">
             <label>РЕФЕРЕНСИ</label>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px;">Додай зображення, які передають твій задум. Це статичний приклад завантаження.</p>
-            <button type="button" class="btn btn-secondary" style="width: 100%;">+ Завантажити референси</button>
-            <div style="display: flex; justify-content: space-between; margin-top: 8px; color: var(--text-gray); font-size: 0.85rem;">
-              <span>reference.jpg</span><span>Приклад файлу &times;</span>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px;">Додай зображення, які передають твій задум.</p>
+            <input id="reference-files" name="references" type="file" accept="image/*" multiple hidden>
+            <label for="reference-files" class="btn btn-secondary cursor-pointer focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-[#8A0303]" style="width: 100%;"><span aria-hidden="true">+</span> Завантажити референси</label>
+            <div id="reference-list" class="mt-2 flex flex-col gap-2" aria-live="polite">
+              <p id="reference-empty" style="color: var(--text-muted); font-size: 0.85rem;">Файли ще не обрано</p>
             </div>
           </div>
         </div>
@@ -101,31 +102,124 @@
         </div>
       </form>
 
-      <!-- Права колонка: Саммарі розрахунку -->
-      <aside>
-        <div class="card-box">
-          <span style="color: var(--text-muted); font-size: 0.75rem; letter-spacing: 1px;">ТВІЙ CUSTOM-ЗАПИТ</span>
-          <h2 style="font-size: 1.8rem; margin: 12px 0 20px;">ВІД ІДЕЇ ДО ФОРМИ</h2>
-          <div style="border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 16px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-              <span style="color: var(--text-gray);">Основа:</span><span>Худі</span>
+      <!-- Права колонка: Калькулятор вартості кастому -->
+      <aside aria-labelledby="calculator-title">
+        <form id="custom-configurator" action="#" method="post" class="border border-white/10 bg-[#0d0d0d] p-5 sm:p-6 lg:sticky lg:top-24" novalidate>
+          <div class="mb-6 flex items-end justify-between gap-4 border-b border-white/10 pb-5">
+            <div>
+              <p class="font-mono text-[10px] uppercase tracking-[0.22em] text-[#8f8f8f]">PRICE CONFIGURATOR</p>
+              <h2 id="calculator-title" class="mt-2 text-2xl font-black uppercase leading-tight">Калькулятор<br>кастому</h2>
             </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-              <span style="color: var(--text-gray);">Розмір / колір:</span><span>M / Чорний</span>
-            </div>
-            <div style="display: flex; justify-content: space-between;">
-              <span style="color: var(--text-gray);">Референси:</span><span>1 приклад</span>
-            </div>
+            <span class="shrink-0 border border-[#8A0303] px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-[#d8d8d8]" aria-label="Калькулятор, крок один">01</span>
           </div>
-          <h3 style="font-size: 1.4rem; margin-bottom: 8px;">Розрахуємо після брифу</h3>
-          <p style="color: var(--text-gray); font-size: 0.85rem; margin-bottom: 24px;">Вартість, можливість втілення та строки погодимо після уточнення деталей.</p>
-          <a href="order-success.html" class="btn btn-primary" style="width: 100%; margin-bottom: 16px;">Надіслати бриф &rarr;</a>
-          <small style="color: var(--text-muted); display: block;">Запит не є оплатою чи підтвердженим замовленням.</small>
-        </div>
 
-        <div class="card-box">
-          <p style="color: var(--text-gray); font-size: 0.9rem; margin-bottom: 16px;">Потрібна допомога з ідеєю? Напиши нам через сторінку контактів.</p>
-          <a href="contacts.html" class="btn btn-secondary" style="width: 100%;">Поставити питання &rarr;</a>
+          <fieldset class="border-0 p-0">
+            <legend class="mb-3 text-xs font-bold uppercase tracking-widest text-[#d8d8d8]">01 / Кількість одиниць</legend>
+            <div class="grid grid-cols-[44px_minmax(72px,1fr)_44px] border border-white/15">
+              <button type="button" data-quantity-action="decrease" class="flex min-h-11 items-center justify-center border-r border-white/15 text-lg font-bold transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#8A0303]" aria-label="Зменшити кількість">−</button>
+              <label for="custom-quantity" class="sr-only">Кількість одиниць</label>
+              <input id="custom-quantity" name="quantity" type="number" value="1" min="1" max="50" step="1" required inputmode="numeric" class="min-h-11 w-full border border-transparent bg-[#09090B] px-3 text-center font-mono text-base font-bold text-white [appearance:textfield] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#8A0303] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none" aria-live="polite" aria-invalid="false" aria-describedby="calc-qty-error">
+              <button type="button" data-quantity-action="increase" class="flex min-h-11 items-center justify-center border-l border-white/15 text-lg font-bold transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#8A0303]" aria-label="Збільшити кількість">+</button>
+            </div>
+            <p id="calc-qty-error" class="mt-2 text-xs text-[#8A0303]" aria-live="assertive"></p>
+          </fieldset>
+
+          <div class="mt-5">
+            <label for="custom-base" class="mb-3 block text-xs font-bold uppercase tracking-widest text-[#d8d8d8]">02 / Базова річ</label>
+            <select id="custom-base" name="base-item" class="min-h-11 w-full rounded-none border border-white/15 bg-[#09090B] px-3 pr-10 text-sm text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303]">
+              <option value="hoodie">Худі</option>
+              <option value="zip">Зіпка</option>
+              <option value="tee">Футболка</option>
+              <option value="cargo">Cargo</option>
+            </select>
+          </div>
+
+          <fieldset class="mt-5 border-0 p-0">
+            <legend class="mb-3 text-xs font-bold uppercase tracking-widest text-[#d8d8d8]">03 / Техніка кастому</legend>
+            <div class="grid grid-cols-1 gap-2 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+              <label class="relative min-h-11 cursor-pointer border border-white/15 bg-[#09090B] px-3 py-3 text-center text-xs font-semibold transition-colors hover:border-white/40 has-[:checked]:border-[#8A0303] has-[:checked]:bg-[#8A0303]/20 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-[#8A0303]">
+                <input type="radio" name="technique" value="print" class="sr-only" checked>
+                Друк
+              </label>
+              <label class="relative min-h-11 cursor-pointer border border-white/15 bg-[#09090B] px-3 py-3 text-center text-xs font-semibold transition-colors hover:border-white/40 has-[:checked]:border-[#8A0303] has-[:checked]:bg-[#8A0303]/20 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-[#8A0303]">
+                <input type="radio" name="technique" value="embroidery" class="sr-only">
+                Вишивка
+              </label>
+              <label class="relative min-h-11 cursor-pointer border border-white/15 bg-[#09090B] px-3 py-3 text-center text-xs font-semibold transition-colors hover:border-white/40 has-[:checked]:border-[#8A0303] has-[:checked]:bg-[#8A0303]/20 has-[:focus-visible]:outline has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-[#8A0303]">
+                <input type="radio" name="technique" value="painting" class="sr-only">
+                Роспис
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="mt-5 border-0 p-0">
+            <legend class="mb-3 text-xs font-bold uppercase tracking-widest text-[#d8d8d8]">04 / Модифікації</legend>
+            <div class="space-y-2">
+              <label for="mod-hardware" class="flex min-h-11 cursor-pointer items-center gap-3 border border-white/10 px-3 py-2 text-sm text-[#d8d8d8] transition-colors hover:border-white/30">
+                <input id="mod-hardware" name="modifications" type="checkbox" value="hardware" class="size-5 shrink-0 rounded-none accent-[#8A0303] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d0d]">
+                Металева фурнітура
+              </label>
+              <label for="mod-distress" class="flex min-h-11 cursor-pointer items-center gap-3 border border-white/10 px-3 py-2 text-sm text-[#d8d8d8] transition-colors hover:border-white/30">
+                <input id="mod-distress" name="modifications" type="checkbox" value="distress" class="size-5 shrink-0 rounded-none accent-[#8A0303] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d0d]">
+                Дистрес
+              </label>
+              <label for="mod-pattern" class="flex min-h-11 cursor-pointer items-center gap-3 border border-white/10 px-3 py-2 text-sm text-[#d8d8d8] transition-colors hover:border-white/30">
+                <input id="mod-pattern" name="modifications" type="checkbox" value="pattern" class="size-5 shrink-0 rounded-none accent-[#8A0303] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d0d]">
+                Індивідуальні лекала
+              </label>
+            </div>
+          </fieldset>
+
+          <fieldset class="mt-5 border-0 p-0">
+            <legend class="mb-3 text-xs font-bold uppercase tracking-widest text-[#d8d8d8]">05 / Терміновість</legend>
+            <label for="rush-order" class="flex min-h-11 cursor-pointer items-center justify-between gap-4 border border-white/10 px-3 py-2">
+              <span>
+                <span class="block text-sm font-semibold">Термінове виробництво</span>
+                <span class="block text-xs text-[#8f8f8f]">До 7 робочих днів</span>
+              </span>
+              <span class="relative inline-flex shrink-0">
+                <input id="rush-order" name="rush" type="checkbox" class="peer sr-only">
+                <span class="block h-6 w-11 border border-white/30 bg-[#09090B] transition-colors peer-checked:border-[#8A0303] peer-checked:bg-[#8A0303] peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-[#8A0303]"></span>
+                <span class="absolute left-1 top-1 size-4 bg-white transition-transform peer-checked:translate-x-5" aria-hidden="true"></span>
+              </span>
+            </label>
+          </fieldset>
+
+          <div class="mt-5">
+            <label for="custom-promo" class="mb-3 block text-xs font-bold uppercase tracking-widest text-[#d8d8d8]">06 / Промокод</label>
+            <div class="flex">
+              <input id="custom-promo" name="promo" type="text" autocomplete="off" placeholder="Введи код" aria-describedby="calc-promo-msg" aria-invalid="false" class="min-h-11 min-w-0 flex-1 rounded-none border border-r-0 border-white/15 bg-[#09090B] px-3 text-sm uppercase text-white placeholder:normal-case placeholder:text-[#777] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#8A0303]">
+              <button id="promo-apply" type="button" class="min-h-11 border border-[#8A0303] bg-[#8A0303] px-4 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#b30000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d0d]">OK</button>
+            </div>
+            <p id="calc-promo-msg" class="mt-2 text-xs text-[#8f8f8f]" aria-live="polite">Знижка не застосована</p>
+          </div>
+
+          <div class="mt-6 border-t border-white/10 pt-5" role="region" aria-label="Зведений кошторис" aria-live="polite">
+            <p class="text-[10px] font-bold uppercase tracking-[0.22em] text-[#8f8f8f]">Кошторис</p>
+            <dl class="mt-4 space-y-2 text-sm">
+              <div class="flex justify-between gap-4">
+                <dt class="text-[#a3a3a3]">Основа × 1</dt>
+                <dd id="base-cost" class="font-mono">2 490 ₴</dd>
+              </div>
+              <div class="flex justify-between gap-4">
+                <dt class="text-[#a3a3a3]">Кастом</dt>
+                <dd id="custom-cost" class="font-mono">1 200 ₴</dd>
+              </div>
+              <div class="mt-4 flex items-end justify-between border-t border-white/10 pt-4">
+                <dt class="text-xs font-bold uppercase tracking-widest">Орієнтовно</dt>
+                <dd id="discount-summary" class="hidden font-mono text-sm text-[#d8d8d8]"></dd>
+                <dd id="total-cost" class="font-mono text-2xl font-black text-white">3 690 ₴</dd>
+              </div>
+            </dl>
+          </div>
+
+          <button id="transfer-config" type="button" class="mt-5 min-h-11 w-full border border-[#8A0303] bg-[#8A0303] px-5 py-3 text-sm font-bold uppercase tracking-widest text-white transition-colors hover:bg-[#b30000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0d0d0d]">Перенести конфігурацію в бриф <span aria-hidden="true">→</span></button>
+          <p class="mt-3 text-center text-[11px] leading-5 text-[#777]">Кінцеву вартість підтвердить майстер після уточнення деталей.</p>
+        </form>
+
+        <div class="mt-6 border border-white/10 bg-[#0d0d0d] p-5 sm:p-6">
+          <p class="text-sm leading-6 text-[#a3a3a3]">Потрібна допомога з ідеєю? Напиши нам через сторінку контактів.</p>
+          <a href="contacts.html" class="mt-4 block min-h-11 w-full border border-white/20 px-5 py-3 text-center text-sm font-semibold transition-colors hover:border-white/40 hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8A0303]">Поставити питання →</a>
         </div>
       </aside>
     </div>
@@ -168,6 +262,7 @@
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
   <script src="assets/js/plugins-init.js"></script>
   <script src="assets/js/main.js"></script>
+  <script src="assets/js/widget.js"></script>
   <script src="assets/js/validation.js"></script>
 </body>
 </html>
