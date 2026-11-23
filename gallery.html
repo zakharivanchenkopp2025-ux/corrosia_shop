@@ -4,12 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Галерея — CORROSIA</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <style>
     .gallery-full-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
     .gallery-card { background: var(--bg-card); border: 1px solid var(--border-color); padding: 12px; }
-    .gallery-card img { width: 100%; aspect-ratio: 1; object-fit: cover; margin-bottom: 12px; }
+    .gallery-card img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; margin-bottom: 12px; background: #0d0d0d; border: 1px solid rgba(255,255,255,.10); border-radius: 0; }
     .open-work-block { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; background: var(--bg-card); border: 1px solid var(--border-color); padding: 40px; margin-bottom: 60px; }
+    @media (max-width: 1023px) { .gallery-full-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 599px) { .gallery-full-grid { grid-template-columns: minmax(0, 1fr); } .open-work-block { grid-template-columns: minmax(0, 1fr); padding: 20px; } }
   </style>
 </head>
 <body>
@@ -61,38 +65,30 @@
 
     <h3 style="margin-bottom: 24px;">УСІ РОБОТИ</h3>
     <div class="gallery-full-grid">
-      <div class="gallery-card">
-        <img src="assets/images/work-4247.png" alt="#4247" loading="lazy">
-        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4247 / Худі</strong><a href="#">Custom &nearr;</a></div>
-      </div>
-      <div class="gallery-card">
-        <img src="assets/images/work-4246.png" alt="#4246" loading="lazy">
-        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4246 / Футболка</strong><a href="#">Custom &nearr;</a></div>
-      </div>
-      <div class="gallery-card">
-        <img src="assets/images/work-4245.png" alt="#4245" loading="lazy">
-        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4245 / Зіпка</strong><a href="#">Custom &nearr;</a></div>
-      </div>
-      <div class="gallery-card">
-        <img src="assets/images/work-4244.png" alt="#4244" loading="lazy">
-        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4244 / Cargo</strong><a href="#">Custom &nearr;</a></div>
-      </div>
-      <div class="gallery-card">
-        <img src="assets/images/work-4243.png" alt="#4243" loading="lazy">
-        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4243 / Худі</strong><a href="#">Custom &nearr;</a></div>
-      </div>
-      <div class="gallery-card">
-        <img src="assets/images/work-4242.png" alt="#4242" loading="lazy">
-        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4242 / Аксесуар</strong><a href="#">Custom &nearr;</a></div>
-      </div>
-      <div class="gallery-card">
-        <img src="assets/images/work-4241.png" alt="#4241" loading="lazy">
-        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4241 / Футболка</strong><a href="#">Custom &nearr;</a></div>
-      </div>
-      <div class="gallery-card">
-        <img src="assets/images/work-4240.png" alt="#4240" loading="lazy">
-        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4240 / Зіпка</strong><a href="#">Custom &nearr;</a></div>
-      </div>
+      <a class="gallery-card" href="assets/images/work-4247.png" data-fancybox="corrosia-archive" data-caption="#4247 / Худі — плотний футер-котон 420 г/м², вільний силует, ручне розміщення heavy-ink принта на спині та контурної вишивки на грудях.">
+        <img src="assets/images/work-4247.png" alt="#4247 Худі" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4247 / Худі</strong><span>Custom &nearr;</span></div>
+      </a>
+      <a class="gallery-card" href="assets/images/work-4246.png" data-fancybox="corrosia-archive" data-caption="#4246 / Футболка — важкий бавовняний джерсі 240 г/м², оверсайз-крій, шовкотрафаретний принт, пісочне травлення та контрастні втачні шви.">
+        <img src="assets/images/work-4246.png" alt="#4246 Футболка" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4246 / Футболка</strong><span>Custom &nearr;</span></div>
+      </a>
+      <a class="gallery-card" href="assets/images/work-4245.png" data-fancybox="corrosia-archive" data-caption="#4245 / Зіпка — двошаровий нейлон з водовідштовхувальною обробкою, розкроєна на кроці, рукавна вишивка, металеві YKK-блискавки та термошви.">
+        <img src="assets/images/work-4245.png" alt="#4245 Зіпка" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4245 / Зіпка</strong><span>Custom &nearr;</span></div>
+      </a>
+      <a class="gallery-card" href="assets/images/work-4244.png" data-fancybox="corrosia-archive" data-caption="#4244 / Cargo — щільний ripstop та brushed cotton, розширені банани з внутрішньою фіксацією, ручне плетіння шнурів і нашивка з 3D-вишивкою.">
+        <img src="assets/images/work-4244.png" alt="#4244 Cargo" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4244 / Cargo</strong><span>Custom &nearr;</span></div>
+      </a>
+      <a class="gallery-card" href="assets/images/work-4243.png" data-fancybox="corrosia-archive" data-caption="#4243 / Худі — антрацитовий велюровий трикотаж із потовщеним капюшоном, асиметрична конструкція друку, термоаплікація та нашивна бронзова фурнітура.">
+        <img src="assets/images/work-4243.png" alt="#4243 Худі" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4243 / Худі</strong><span>Custom &nearr;</span></div>
+      </a>
+      <a class="gallery-card" href="assets/images/work-4242.png" data-fancybox="corrosia-archive" data-caption="#4242 / Аксесуар — індивідуальний текстильний виріб із армованої бавовни, ручна вибивка металевими заклепками, контурна аплікація та лімітований принт.">
+        <img src="assets/images/work-4242.png" alt="#4242 Аксесуар" loading="lazy">
+        <div style="display: flex; justify-content: space-between; font-size: 0.85rem;"><strong>#4242 / Аксесуар</strong><span>Custom &nearr;</span></div>
+      </a>
     </div>
   </main>
 
@@ -108,6 +104,10 @@
     </div>
     <p class="footer-copyright">&copy; CORROSIA / Усі права захищені. Україна / UA</p>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.36/dist/fancybox/fancybox.umd.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <script src="assets/js/plugins-init.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,5 +1,100 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* ==========================================================================
+     0. Інтерактивний хаб Atelier (WAI-ARIA Segmented Control)
+     ========================================================================== */
+  const atelierHub = document.getElementById("atelier-hub");
+
+  if (atelierHub) {
+    const tabs = Array.from(atelierHub.querySelectorAll('[role="tab"][data-atelier-tab]'));
+    const panels = {
+      drops: document.getElementById("drops"),
+      gallery: document.getElementById("gallery")
+    };
+
+    const activeClasses = "bg-[#8A0303] text-white border-[#8A0303] rounded-none";
+    const inactiveClasses = "bg-[#0d0d0d] text-[#a3a3a3] border-white/10 hover:text-white rounded-none";
+
+    function normalizeAtelierTab(tabName) {
+      if (!tabName) return "drops";
+      const normalized = String(tabName).toLowerCase().trim();
+      if (["gallery", "archive", "archive-gallery", "custom"].includes(normalized)) return "gallery";
+      return "drops";
+    }
+
+    window.switchAtelierTab = function switchAtelierTab(tabName, options = {}) {
+      const normalized = normalizeAtelierTab(tabName);
+
+      tabs.forEach((tab) => {
+        const isSelected = tab.dataset.atelierTab === normalized;
+        tab.setAttribute("aria-selected", isSelected ? "true" : "false");
+        tab.setAttribute("tabindex", isSelected ? "0" : "-1");
+
+        activeClasses.split(" ").forEach((className) => tab.classList.remove(className));
+        inactiveClasses.split(" ").forEach((className) => tab.classList.remove(className));
+        const selectedClasses = isSelected ? activeClasses : inactiveClasses;
+        selectedClasses.split(" ").forEach((className) => tab.classList.add(className));
+      });
+
+      Object.entries(panels).forEach(([name, panel]) => {
+        if (!panel) return;
+        const isSelected = name === normalized;
+        panel.hidden = !isSelected;
+        panel.setAttribute("aria-hidden", isSelected ? "false" : "true");
+      });
+
+      if (options.updateHash !== false) {
+        const nextHash = normalized === "gallery" ? "#gallery" : "#drops";
+        if (window.location.hash !== nextHash) {
+          window.history.replaceState(null, "", `${window.location.pathname}${nextHash}`);
+        }
+      }
+
+      if (options.scroll) {
+        const target = normalized === "gallery" ? panels.gallery : panels.drops;
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+
+      return normalized;
+    };
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => {
+        window.switchAtelierTab(tab.dataset.atelierTab);
+      });
+
+      tab.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+
+        let nextIndex;
+        if (event.key === "Home") nextIndex = 0;
+        else if (event.key === "End") nextIndex = tabs.length - 1;
+        else if (event.key === "ArrowRight") nextIndex = (index + 1) % tabs.length;
+        else nextIndex = (index - 1 + tabs.length) % tabs.length;
+
+        const nextTab = tabs[nextIndex];
+        window.switchAtelierTab(nextTab.dataset.atelierTab);
+        nextTab.focus();
+      });
+    });
+
+    function handleAtelierHash() {
+      const hash = window.location.hash.slice(1).toLowerCase();
+      if (hash === "gallery" || hash === "archive") {
+        window.switchAtelierTab("gallery", { updateHash: false, scroll: true });
+      } else if (hash === "drops") {
+        window.switchAtelierTab("drops", { updateHash: false, scroll: true });
+      }
+    }
+
+    handleAtelierHash();
+    if (!window.location.hash) {
+      window.switchAtelierTab("drops", { updateHash: false });
+    }
+    window.addEventListener("hashchange", handleAtelierHash);
+  }
+
+  /* ==========================================================================
      1. Мобільне меню (Гамбургер у Header)
      ========================================================================== */
   const menuBtn = document.getElementById("mobile-menu-toggle");

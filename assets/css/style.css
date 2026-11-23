@@ -19,6 +19,79 @@
   --video-radius: 0px;
 }
 
+/* Pre-init Flexbox: prevents reviews layout shift before Swiper initialization. */
+.reviews-swiper:not(.swiper-initialized) {
+  display: flex;
+  overflow: hidden;
+}
+
+.reviews-swiper:not(.swiper-initialized) .swiper-wrapper {
+  display: flex;
+  width: 100%;
+}
+
+.reviews-swiper:not(.swiper-initialized) .swiper-slide {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+
+.reviews-swiper .swiper-pagination-bullet {
+  background: #FFFFFF;
+  opacity: 0.45;
+}
+
+.reviews-swiper .swiper-pagination-bullet-active {
+  background: #8A0303;
+  opacity: 1;
+}
+
+.reviews-swiper .swiper-pagination-bullet-active-main,
+.reviews-swiper .swiper-pagination-bullet-active-prev,
+.reviews-swiper .swiper-pagination-bullet-active-next {
+  background: #8A0303;
+}
+
+.reviews-controls .swiper-button-prev,
+.reviews-controls .swiper-button-next {
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  margin-top: -22px;
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  color: #FFFFFF;
+  background: #0d0d0d;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.reviews-controls .swiper-button-prev {
+  left: 0;
+}
+
+.reviews-controls .swiper-button-next {
+  right: 0;
+}
+
+.reviews-controls .swiper-button-prev:hover,
+.reviews-controls .swiper-button-next:hover {
+  border-color: #8A0303;
+  color: #FFFFFF;
+}
+
+.reviews-controls .swiper-button-prev::after,
+.reviews-controls .swiper-button-next::after {
+  font-size: 16px;
+  font-weight: 800;
+  color: #FFFFFF;
+}
+
+.reviews-controls .swiper-pagination {
+  left: 52px;
+  right: 52px;
+  width: auto;
+  bottom: 50%;
+  transform: translateY(50%);
+}
+
 .atelier-video {
   width: 100%;
   max-width: var(--video-max-width);
@@ -501,4 +574,77 @@ select.form-control {
     overflow-y: auto;
     padding: 24px;
   }
+}
+
+/* CORROSIA Fancybox v5 theme */
+.fancybox__container {
+  --fancybox-bg: #09090B;
+  --fancybox-accent-color: #8A0303;
+  --fancybox-button-bg: #0d0d0d;
+  --fancybox-button-hover-bg: #8A0303;
+  --fancybox-button-active-bg: #8A0303;
+  --fancybox-button-color: #FFFFFF;
+  --fancybox-button-border-radius: 0;
+  --fancybox-caption-bg: #09090B;
+  --fancybox-caption-color: #FFFFFF;
+  --fancybox-thumbs-bg: #09090B;
+  --fancybox-thumbs-border-radius: 0;
+}
+
+.fancybox__backdrop {
+  background: #09090B;
+}
+
+.fancybox__toolbar,
+.fancybox__nav,
+.fancybox__caption {
+  border-radius: 0;
+}
+
+.fancybox__toolbar {
+  background: rgba(9, 9, 11, 0.94);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.fancybox__button {
+  border: 1px solid transparent;
+  border-radius: 0;
+  background: #0d0d0d;
+  color: #FFFFFF;
+}
+
+.fancybox__button:hover,
+.fancybox__button:focus-visible {
+  border-color: #8A0303;
+  background: #8A0303;
+  color: #FFFFFF;
+}
+
+.fancybox__caption {
+  background: rgba(9, 9, 11, 0.96);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  color: #FFFFFF;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.fancybox__thumbs {
+  background: #09090B;
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 0;
+}
+
+.fancybox__thumb {
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 0;
+  background: #0d0d0d;
+}
+
+.fancybox__thumb.is-active,
+.fancybox__thumb:hover {
+  border-color: #8A0303;
+}
+
+.typed-cursor {
+  color: #8A0303;
 }
